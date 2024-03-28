@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}abstract nonsense}{1}{section.1}%
+\contentsline {section}{\numberline {2}sheaf cohomology}{4}{section.2}%
+\contentsline {section}{\numberline {3}coherent sheaves}{8}{section.3}%
+\contentsline {paragraph}{4 coherence theorems}{10}{thmt@dummyctr.dummy.34}%
+\contentsline {section}{\numberline {4}abelian categories}{11}{section.4}%
+\contentsline {section}{\numberline {5}derived functors}{12}{section.5}%
+\contentsline {section}{\numberline {6}line bundles and divisors}{14}{section.6}%
+\contentsline {section}{References}{15}{prop.6.1}%
