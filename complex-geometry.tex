@@ -167,6 +167,16 @@
 \DeclareMathOperator{\an}{an}
 \DeclareMathOperator{\alg}{alg}
 \DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\PSL}{PSL}
 
 
 \begin{document}
@@ -251,7 +261,7 @@
 	\end{itemize}
 \end{defn}
 \section{sheaf cohomology}
-This section is (almost) literally \cite{huybrechts} appendix B.
+Let's read \cite{huybrechts}, appendix B.
 
 In the following, $M$ will be a topological space. In most of the examples it is a differential or complex manifold.
 \begin{defn}
@@ -416,9 +426,238 @@ The most striking feature of cohomology is that it explains fully the non­ exac
 	\[\begin{tikzcd}
 		0\arrow[r]&\Fc^0\arrow[r]&\Fc^1\arrow[r]&\Fc^2\arrow[r]&0
 	\end{tikzcd}\]
+	be a short exact sequence of sheaves on $M$. Then there exists a \textbf{\textit{long exact cohomology sequence}}
+	\[\begin{tikzcd}
+		0\arrow[r]&H^0(M,\Fc^0)\arrow[r]&H^0(M,\Fc^1)\arrow[r]&H^0(M,\Fc^2)\arrow[dll]\\
+		&H^1(M,\Fc^0)\arrow[r]&H^1(M,\Fc^1)\arrow[r]&H^1(M,\Fc^2)\arrow[dll]\\
+		&H^2(M,\Fc^0)\arrow[r]&H^2(M,\Fc^1)\arrow[r]&H^2(M,\Fc^2)\arrow[r]&\cdots
+	\end{tikzcd}\]
 \end{prop}
+\begin{defn}
+	Suppose $\Fc$ is a sheaf {\color{cyan}of vector spaces} on $M$. Then $h^i(M,\Fc)$ denotes the dimension of $H^i(M,\Fc)$, which inherits a natural vector space structure. If all $h^i(M,\Fc)$ are finite and only finitely many are non-trivial we say $\Fc$ has \textbf{\textit{finite cohomology}} and we define the \textbf{\textit{Euler-Poincaré characteristic of $\Fc$}} as
+	\[\chi(M,\Fc):=\sum(-1)^ih^i(M,\Fc).\]
+\end{defn}
+\begin{remark}
+	In \cite{hatcher-at}, we have the following result for a finite CW complex $Y$:
+	\[\sum_{i=0}^\infty(-1)^i(\#i-\text{cells})=\sum_{i=0}^\infty(-1)^i\operatorname{ran}H_i(Y;\Z),\]
+	where left-hand side is defined as the Euler-Poincaré characteristic $\chi(Y)$.
+\end{remark}
+\begin{coro}
+	Let
+	\[\begin{tikzcd}
+		0\arrow[r]&\Fc^0\arrow[r]&\Fc^1\arrow[r]&\Fc^2\arrow[r]&0
+	\end{tikzcd}\]
+	be a short exact sequence of sheaves of vector spaces with finite cohomology. Then
+	\[\chi(M,\Fc^1)=\chi(M,\Fc^0)+\chi(M,\Fc^2).\]
+\end{coro}
+It might happen that flasque resolutions are difficult to find. But in order to compute the cohomology of a sheaf, any resolution by \textbf{\textit{acyclic sheaves}}, i.e. sheaves with trivial higher cohomology groups, can be used. What kind of acyclic sheaves are convenient depends on the situation. For topological, differentiable, and complex manifolds, the following one is very useful. For the Zariski topology one has to use different ones.
+\begin{defn}
+	A sheaf $\Fc$ is called \textbf{\textit{soft}} is the restriction $\Gamma(M,\Fc)\to\Gamma(K,\Fc)$ is surjective for any closed subset $K\subset M$.
+	
+	The space of sections $\Gamma(K,\Fc)$ of $\Fc$ over the closed set $K$i\textit{is defined} as the direct limit of the spaces of sections over all open neighbouthoods of $K$.
+\end{defn}
+\begin{prop}
+	Soft sheaves are acyclic. Any sheaf of modules over a soft sheaf of commutative rings is soft and hence acyclic.
+\end{prop}
+\begin{remark}
+	This is frequently applied to the sheaf of continuous (or differentiable) functions on a manifold \textit{which is easily shown to be soft}. Notice that the sheaf of holomorphic functions on a complex manifold \textit{is not soft}.
+\end{remark}
+
+\textbf{\textit{\v Chech cohomology}} is another cohomology theory. It has the advantage to be defined without any sheaf resolution. Since it often coincides with the cohomology defined above, we will sketch the main steps of its construction.
+
+Let us first fix an open covering $M=\bigcup_iU_i$ with $I$ an order set and consider the intersections $U_{i_0\ldots i_p}:=U_{i_0}\cap\ldots\cap U_{i_p}$. Then we set
+\[C^p(\{U_i\},\Fc)=\prod_{i_0<\ldots<i_p}\Gamma(U_{i_0\ldots i_p},\Fc)\]
+{\color{cyan}(It doesn't seem to be a very meaningful definition… I would rather like it if they were formal sums of something like in \cref{remark:chain-complexes})} There is a natural differential
+\begin{align*}
+	d:C^p(\{U_i\},\Fc)&\to C^{p+1}(\{U_i\},\Fc)\\
+	\alpha=\prod\alpha_{i_0\ldots i_p}&\mapsto d\alpha
+\end{align*}
+with
+\[(d\alpha)_{i_0\ldots i_{p+1}}=\sum_{k=0}^{p+1}(-1)^k\alpha_{i_0\ldots\widehat{i_k}\ldots i_{p+1}}|_{U_{i_0\ldots i_p+1}}\]
+\begin{remark}\label{remark:chain-complexes}
+	Recall from \cite{hatcher-at} that a \textbf{\textit{singular $n$-simplex}} in a space $X$ is by definition just a map $\sigma:\Delta^n\to X$. The word 'singular' is used here to express the idea that $\sigma$ need not be a nice embedding but can have 'singularities' where its image does not look at all like a simplex. All that is required is that $\sigma$ be continuous. Let $C_n(X)$ be the free abelian group with basis the set of singular $n$-simplices in $X$. Elements of $C_n(X)$, called \textbf{\textit{$n$-chains}}, are finite formal sums $\sum_in_i\sigma_i$ for $n_i\in\Z$ and $sigma_i:\Delta^n\to X$. A boundary map $\partial_n:C_n(X)\to C_{n-1}(X)$ is defined by specifying its values on the basis elements:
+	\[\partial_n(\sigma)=\sum_i(-1)^i\sigma|[v_0,\ldots,\widehat{v_i},\ldots,v_n],\]
+	which intuitively means that the boundary of the $n$-simplex consists of various ordered $(n-1)$-dimensional simplices, where the symbol $\hat{}$ over $v_i$ indicates that this vertex is deleted from the sequence $v_0,\ldots,v_n$.
+	
+	Then, given a space $X$ and an abelian group $G$, we define the group $C^n(X;G)$ of \textbf{\textit{singular $n$-cochains with coefficients in $G$}} to be the dual group $\Hom(C_n(X),G)$ of the singular chaing group $C_n(X)$. Thus an $n$-cochain $\varphi\in C^n(X;G)$ assigns to each singular $n$-simplex $\sigma:\Delta^n\to X$ a value $\varphi(\sigma)\in G$. Since the singular $n$-simplices form a basis for $C_n(X)$, these values can be chosen arbitrarily, hence $n$-cochains are exactly equivalent to functions from singular $n$-simplices to $G$. A \textbf{\textit{coboundary map}} $\delta:C^n(X;G)\to C^{n+1}(X;G)$ is the dual $\delta^*{\color{cyan}=\Hom(\partial,G)}$, so for a cochain $\varphi\in C^n(X;G)$, its coboundary $\delta\varphi$ is the composition $C_{n+1}(X)\overset{\partial}{\to}C_n(X)\overset{\varphi}{\to}G$.
+		\[\begin{tikzcd}
+		\textcolor{cyan}{C_{n+1}}\arrow[d,cyan,swap,"\partial"]\arrow[rd,cyan,"\varphi\circ\partial=\partial^*"]\\	\textcolor{cyan}{C_n}\arrow[cyan,swap,r,"\varphi"]&\textcolor{cyan}{G}
+	\end{tikzcd}\]
+	This means that for a singular $(n+1)$-simplex $\sigma(\Delta^{n+1})\to X$ we have
+	\[\varphi\partial (\sigma)=\sum_i(-1)^i\varphi(\sigma|[v_1,\ldots,\widehat{v}_i,\ldots,v_{n+1}])\]
+\end{remark}
+
+Back to \cite{huybrechts}, a calculation shows that $d^2=0$, i.e.
+\[\begin{tikzcd}
+	C^0(\{U_i\},\Fc)\arrow[r,"d"]&C^1(\{U_i\},\Fc)\arrow[r,"d"]&\cdots
+\end{tikzcd}\]
+is a complex. {\color{magenta}Since $\Fc$ is a sheaf, one finds $\Gamma(M,\Fc)=\ker(d:C^0(\{U_i\},\Fc)\to C^1(\{U_i\},\Fc))$ (I would love to see why…)}.
+
+\begin{defn}
+	The \textbf{\textit{$i$-th \v Chech cohomology group}} with respect to the fixe open covering $M=\bigcup_iU_i$ is
+	\[\check{H}^i(\{U_i\},\Fc)=\dfrac{\ker(d:C^i(\{U_i\},\Fc)\to C^{i+1}(\{U_i\},\Fc))}{\img(d:C^{i-1}(\{U_i\},\Fc)\to C^i(\{U_i\},\Fc))}\]
+	In this way, we have defined cohomology groups without using acyclic sheaves, but which still depend on the open covering $M=\bigcup U_i$. This can be remedied by passing to the limit. More precisely, if $M=\bigcup_i U_i$ is refined by an open covering $M=\bigcup_jV_j$, then there exists a natural map
+	\[\check{H}^i(\{U_i\},\Fc)\to\check{H}^i(\{V_j\},\Fc))\]
+	and one defines the \v Chech cohomology as a sheaf without specifying an open coveing as
+	\[\check{H}^i(M,\Fc):=\lim_\to \check{H}^i(\{U_i\},\Fc).\]
+\end{defn}
+Now let's quickly do the approach in \cite{donaldson}.
+Consider a topological space $X$ and an open cover $X=\bigcup_\alpha U_\alpha$. For simplicity, suppose $X$ is compact and the cover is finite. The \textbf{\textit{nerve}} if the cover is an abstract simplicial complex with one vertes (a 0-simplex) $\sigma_\alpha$ for every open set $U_\alpha$ and a $p$-simplex $\sigma_{\alpha_0,\ldots,\alpha_p}$ for each non-empty intersection $U_{\alpha_0}\cap\ldots\cap U_{\alpha_p}$. Now, given an abelian group $A$, we can form the simplicial cochain complex of this nerve.
+
+For example, a 0-cochain is the assignment of an element $g_\alpha\in A$ to each $U_\alpha$. A 1-cochain assigns an element $g_{\alpha\beta}\in A$. to each non-empty intersection $U_\alpha\cap U_\beta$ and a 2-cochain assigns an element $g_{\alpha\beta\gamma}$ to each non-empty triple intersection $U_\alpha\cap U_\beta\cap U\gamma$. {\color{cyan}(Now this looks much more like \cref{remark:chain-complexes})} We have cochain groups $C^p$ for $p\geq 0$. There is a standar coboundary map $\delta:C^p\to C^{p+1}$. For example, a 1-cochain $\underline{g}=(a_\alpha)$ has $\delta\underline{g}=\underbrace{h}$ where
+\[\underline{h}_{\alpha\beta}=g_\alpha-g_\beta\]
+and a 2-cochain $\underline{h}$ has $\delta\underline{h}=\underline{k}$, where
+\[\underline{k}_{\alpha\beta\gamma}=h_{\alpha\beta}-h_{\alpha\gamma}+h_{\beta\gamma}\]
+{\color{cyan}So this is just a way of writing the definition of the boundary map without writing it. So it's not surprising to have a} \textit{Note:} There is an issue about how one handles orientations here; see any book on algebraic topology.
+
+Now we can form the cohomology of this complex $H^*(X;\Uc,A)$, say, where $\Uc$ denotes the open cover. Suppose $X=\bigcup V_i$ is another cover $\Vc$. We say that $\Vc$ is a \textbf{\textit{refinement}} of $\Uc$ if we can choose a map of index sets $\alpha(i)$ such that $V_i$ is contained in $U_{\alpha(i)}$. In this case, we get a natural induced map on cochain complexes and hence a map $H^*(X;\Uc,A)\to H^*(X;\Vc,A)$. The \textbf{\textit{\v Cech cohomology}} $H^*(X,A)$ of $X$ with co-efficients in $A$ is defined by taking the \textbf{\textit{inverse limit}}:
+
+\begin{quote}
+	That is, an element of $H^*(X,A)$ is represented by an alement of $H^*(X;\Uc,A)$ for some cover $\Uc$, but two elements represented by $\omega_1\in H^*(X;\Uc_1,A)$, $\omega_2\in H^*(H;\Uc_2,A)$ are equal in $H^*(X;A)$ if there is some common refinement $\Vc$ of $\Uc_1,\Uc_2$ such that $\omega_1,\omega_2$ have the same image in $H^*(X;\Vc,A)$.
+\end{quote}
+Thus $H^*(X,A)$ is a topological invariant of $X$ and, at least for reasonable spaces such as manifolds, this is in fact isomorphic to the singular cohomology with coefficients in $A$. In practice, one rarely needs to perfom the limiting process explicitly if one works with a sensible cover.
+
+Now, from this standpoint, the generalisation to ‘sheaf cohomology’ is very easy and natural. To keep things simple, for the moment suppose one has a class $S$ of functions on the space $X$ (these could be continuous functions or, if $X$ is a manifold, smooth functions or, if $X$ is a Riemann surface, holomorphic functions). The only property we require is that for each non-emptu open set $U\subset X$ there is a corresponding set $S(U)$ of functions on $U$ of the given class, and if $U\subset U$ we have a restriction map from $S(U)$ to $S(V)$.
+
+We generalise the \v Cech construction by allowing $g_{\alpha_0,\ldots,\alpha_p}$ to ba en element of $S(U_0\cap\ldots\cap U_p)$. The differential $\delta$ is defined by the same formula, but restricting functions on $p+1$ fold intersections to $p$-fold intersections.  Then we get cohomology groups $H^*(X;\Uc,S)$ and, taking limit over coverings, we arrive at an invariant $H^*(X,S)$.
+
+\begin{quote}
+	For example, a 0-cochain $\underline{g}$ is given by a function $g_\alpha$ on $U_\alpha$ for each $\alpha$, and the cocycle condition $\delta\underline{g}=0$ asserts that $g_\alpha=g_\beta$ on any non empty intersection $U_\alpha\cap U_\beta$. This just means that the $g_\alpha$ are restrictions of a single function $g$ on $X$. Thus $H^0(X;\Uc,S)=S(X)$.
+	
+	{\color{cyan}Let us rephrase: a 0-cochain is a formal sum of some holomorphic functions defined on some sets. If this cochain is a cocycle then these functions coincide on the intersections on the sets. Because we are dealing with a sheaf, this means we can make a function on the whole manifold out of the pieces,} {\color{magenta}and then finally I think I am kind of convinced that $H^0(X;\Uc,S)=S(X)$.}
+\end{quote}
+{\color{cyan}Then we have a discussion on meromorphic functions, definition of a sheaf $\Sc$ on a space $X$, homomorphism of sheaves, injective sheaves, surjective sheaves (which are not what we expect and in fact this is where cohomology came in), and also}
+\begin{defn}
+	A sheaf $\Sc$ over $M$ is called \textbf{\textit{fine}} if, for each locally finite cover $\{U_i\}$ of $M$ by open sets, there exists for each $i$ an endomorphism $e_i$ of $\Sc$ such that
+	\begin{itemize}
+		\item $\supp(e_i)\subset U_i$,
+		\item $\sum_ie_i=\id$.
+	\end{itemize}
+	By $\supp$, the \textbf{\textit{support}} of $e_i$ we denote the closure of the set of points $m\in M$ for which $e_i|\Sc_m$ is not zero. We call $\{e_i\}$ a \textbf{\textit{partition of unity}} for $\Sc$ subordinate to the cover $\{U_i\}$ of $M$.
+\end{defn}
+From our Telegram group (sadly I can't compile the names in Russian…):
+\begin{quote}
+	\href{https://fr.wikipedia.org/wiki/Faisceau_(mathématiques)#Typologie_des_faisceaux}{Tipologia dos feixes}:
+	\begin{itemize}
+		\item flabby = flasque
+			%=вялый 
+			= flácido--- sections extend from open subsets
+		\item soft = mou
+			%=мягкий 
+			= macio--- sections extend from closed subsets
+		\item fine = fin
+			%=тонкий
+	 		= fino--- partition of unity (sheaf of endomorphisms is soft)
+	
+	And we have:
+	
+	fine $\implies$ soft $\implies$ flabby $\implies$ acyclic $\implies$ resolutions of this type are useful to compute cohomology
+	
+	fino $\implies$ macio $\implies$ flácido $\implies$ acíclico $\implies$ útil
+
+	Fine sheaves were introduced by Cartan, flabby and soft by Godement.
+	\end{itemize}
+\end{quote}
+
+\textbf{Now the basic fact is there is a way to define cohomology groups $H^p(X,\Sc)$ for any sheaf over a space $X$.} Since $X$ is fixed, we will drop it from the notation and just write $H^p(\Sc)$. These can be characterised by the following axioms.
+\begin{enumerate}
+	\item $H^0(X,\Sc)=\Sc(X)$, the space of \textbf{\textit{global sections}} of $\Sc$.
+	\item A sheaf homomorphism $a:\Sc\to\Sc'$ induces homomorphisms from $H^p(X,\Sc)$ to $H^p(X,\Sc')$.
+	\item A short exact sequence of sheaves $0\to\Sc\to\Sc'\to\Sc''\to0$ induces a long exact sequence in cohomology
+	\[\cdots\to H^p(\Sc')\to H^p(\Sc'')\overset{\delta}{\to}H^{p+1}(\Sc)\to H^{p+1}(\Sc')\to\cdots,\]
+	where the boundary maps $\delta$ have an obvious naturality property with respect to homomorphisms of exact sequences.
+	\item if $\Sc$ is fine, then $H^p(\Sc)=0$ for $p>0$.
+\end{enumerate}
+
+Again from Telegram:
+\begin{quote}
+	And 'axioms' of Donaldson say merely that $H^p$ are functorial in the sheaf $\Fc$, there is a long exact sequence of cohomology associated with a short exact sequence of sheaves, and fine sheaves are acyclic. First three axioms follow from general formalism of derived functors, fourth gives us a source of sheaves that we can use to construct resolution in order to compute the cohomology (e.g. all sheaves of modules over the sheaf of smooth functions).
+\end{quote}
+
+And \cite{donaldson}. One approach is to use the \v Cech construction outlined above to define the groups $H^p(\Sc)$ and then show uniqueness from the axioms. But there are several other approaches, and we refer to more specialised texts for a proper treatment.
+
+\begin{quote}
+	{\color{red}\textbf{The point is that however we go about things, we arrive at the same cohomology groups}.}
+\end{quote}
+
+Aaaand back to \cite{huybrechts}:
+\begin{prop}
+	For any open covering $M=\bigcup_iU_i$, there exists an natural homomorphism
+	\[\check{H}^i(\{U_i\},\Fc)\to H^i(M,\Fc).\]
+\end{prop}
+Of course, these homomorphisms are in general not bijective, as the open
+covering might be very coarse. However, passing to the limit often results in isomorphism with the true cohomology groups, i.e. when the topological spaces is reasonable (e.g. paracompact), the induced maps $\check{H}^i(M,\Fc)\to H^i(M,\Fc)$ are indeed bijective.
+\begin{prop}
+	The natural map $\check{H}^1(M,\Fc)\to H^1(M,\Fc)$ is always bijective.
+\end{prop}
+This opens the way to parametrize line bundles by cohomology classes. Let us sketch this for differentiable real line bundles.
+
+Let $\pi:L\to M$ be a line bundle that can be trivialized over open subsets $U_i$ of an open cover $M=\bigcup U_i$ by maps $\psi_i:L|_{U_i}\cong U_i\times \R$. Then $\{\psi_{ij}:=\psi_i\circ\psi^{-1}_j\in\Cc_M^*(U_i\cap U_j)\}$ {\color{red}can be considered as a cocycle (see \cref{cocycle-condition})} and thus gives rise to an element in $\check{H}^1(\{U_i\},\Cc_M^*)$, where $\Cc^*_M$ is the sheaf of differentiable functions without zeros.
+
+One verifies that this cohomology class does not depend on the choice of the trivializations $\psi_i$. Moreover, any class in $\check{H}^1(\{U_i\},\Cc_M^*)$ can be interpreted as a cocycle of a line bundle trivialized over the open subsets $U_i$.
+
+Thus, by definition every line bundle $L$ gives rise to a cohomology class in the covering independent \v Cech cohomology group $\check{H}^1(M,\Cc^*_M)$ which does not depend neither on the open covering nor on the trivializations. The above proposition then yields
+
+\begin{coro}
+	There is a bijection between the set of isomorphism classes of real line bundles on a differentiable manifold $M$ and the group $H^1(M,\Cc^*_M)$.
+\end{coro}
+
+{\color{cyan} In sum, since a line bundle can be reconstructed from the gluing maps of the trivializations, and all of those form a cocycle, \textbf{every line bundle is associated to a cocycle!} And it is a bijective correspondence, and that is the Picard group.}
+
+\section{line bundles}
+Now let's read some of \cite{hatcher-vb}.
+
+\begin{defn}\leavevmode
+	\begin{itemize}
+		\item An \textbf{\textit{$n$-dimensional vector bundle}} is a map $p:E\to B$ together with a vector space structure on $p^{-1}(b)$ for each $b\in B$ such that the following local triviality condition is satisfied: there is a cover of $B$ by open sets $U_\alpha$ for each of which there exists a homeomorphism $h_\alpha:p^{-1}(U_\alpha)\to U_\alpha\times\R^n$ taking $p^{-1}(b)$ to $\{b\}\times\R^n$ by a vector space isomorphism for each $b\in U_\alpha$. Such an $h_\alpha$ is called a \textbf{\textit{local trivialization}} of the vector bundle. The space $B$ is called the \textbf{\textit{base space}}, $E$ is called the \textbf{\textit{total space}} and the vector spaces $p^{-1}(b)$ are the \textbf{\textit{fibers}}. We could equally well take $\C$ instead of $\R$ to obtain a \textbf{\textit{complex vector bundle}}.
+		
+		\item An \textbf{\textit{isomorphism}} between vector bundles $p_1:E_1\to B$ and $p_2:E_2\to B$ over the same base space $B$ is a homeomorphism $h:E_1\to E_2$ taking each fiber $p_1^{-1}(b)$ to the corresponding fiber $p_2^{-1}(b)$ by a linear isomorphism.
+		
+		\item A \textbf{\textit{section}} of a vector bundle $p:E\to B$ is a map $s:B\to E$ assigning to each $b\in B$ a vector $s(b)$ in the fiber $p^{-1}(b)$. The condition $s(b)\in p^{-1}(b)$ can also be written as $ps=\id_B$. Every vector bundle has a canonical section, the \textbf{\textit{zero section}} whose value is the zero vector in each fiber.
+		
+		\item Given vector bundles $p_1:E_1\to B$ and $p_2:E_2\to B$ over the same base space $B$ we define their \textbf{\textit{direct sum}} to be the space
+		\[E_1\oplus E_2=\{(v_1,v_2)\in E_1\times E_2:p_1(v_1)=p_2(v_2)\}.\]
+		There is a projection $E_1\oplus E_2\to B$ sending $(v_1,v_2)$ to the point $p_1(v_1)=p_2(v_2)$ making this construction into a vector bundle over $B$.
+		
+		\item Given vector bundles $p_1:E_1\to B$ and $p_2:E_2\to B$ over the same base space $B$ let $E_1\otimes E_2$, as a set, be the disjoint union of the vector spaces $p_1^{-1}(x)\otimes p_2^{-1}(x)$ for $x\in B$. The topology on this set is defined in the following way. Choose isomorphisms $h_i:p_i^{-1}(U)\to U\times\R^{n_i}$ for each open set $U\subset B$ over which $E_1$ and $E_2$ are trivial. Then the topology $\Tc_U$ on the set $p_1^{-1}(U)\otimes p_2^{-1}(U)$ is defined by letting the fiberwise tensor product map $h_1\otimes h_2:p_1^{-1}(U)\otimes p_2^{-1}(U)\to U\times (\R^{n_1}\otimes\R^{n_2})$ be a homeomorphism.
+		
+		The toplogy $\Tc_U$ is independent of the choice of the $h_i$'s since any other choices are obtained by composing with isomorphisms of $U\times\R^{n_i}$ of the form $(x,v)\mapsto(x,g_i(x)(v))$ for continuous maps $g_i:U\to \GL_{n_i}(\R)$ {\color{cyan}(this follows from the definition of local trivializations as vector space isomorphisms)}. Hence $h_1\otimes h_2$ changes by composing with analogous isomorphisms of $U\times (\R^{n_1}\otimes\R^{n_2})$ whose second coordinates $g_1\otimes g_2$ are continuous maps $U\to\GL_{n_1n_2}(\R)$, since the entries of the matrices $g_1(x)\otimes g_2(x)$ are the products of the entries of $g_1(x)$ and $g_2(x)$.
+		
+		When we replace $U$ by an open subset $V$, the topology on $p_1^{-1}(V)\otimes p_2^{-1}(V)$ induced by $\Tc_U$ is the same as the topology $\Tc_V$ since local trivializations over $U$ restrict to local trivializations over $V$. Hence we get a well-defined topology on $E_1\otimes E_2$ making it a vector bundle over $B$.
+	\end{itemize}
+\end{defn}
+\begin{remark}
+	There is another way to look at this construction that takes as its point of departure a general method for constructing vector bundles we have not mentioned previously. If we are given a vector bundle $p:E\to B$ and an open cover $\{U_\alpha\}$ of $B$ with local trivializations $h_\alpha:p^{-1}(U_\alpha)\to U_\alpha\times\R^n$, then we can reconstruct $E$ as the quotient space of the disjoint union $\coprod_\alpha(U_\alpha\times\R^n)$ obtained by identifying $(x,v)\in U_\alpha\times\R^n$ with $h_\beta h_\alpha^{-1}(x,v)\in U_\beta\times\R^n$ whenever $x\in U_\alpha\cap U_\beta$.
+	
+	The functions $h_\beta h_\alpha^{-1}$ can be viewed as maps $g_{\beta\alpha}:U_\alpha\cap U_\beta\to \GL_n(\R)$. These satisfy the \textbf{\textit{cocycle condition}}\label{cocycle-condition} $g_{\gamma\beta}g_{\beta\alpha}=g_{\gamma\alpha}$ on $U_\alpha\cap U_\beta\cap U_\gamma$. Any collection of \textbf{\textit{gluing functions}} $g_{\beta}$ satisfying this condition can be used to construct a vector bundle $E\to B$.
+	
+	In the case of tensor products, suppose we have two vector bundles $p_1:E_1\to B$ and $p_2:E_2\to B$. We can choose an open cover $\{U_\alpha\}$ with both $E_1$ and $E_2$ trivial over each $U_\alpha$ and so obtain gluing functions $g_{\beta\alpha}^i:U_\alpha\cap U_\beta\to\GL_{n_i}(\R)$ for each $E_i$. Then the gluing functions for the bundle $E_1\otimes E_2$ are the tensor product functions $g_{\beta\alpha}^1(x)$ and $g_{\beta\alpha}^2(x)$.
+\end{remark}
+\begin{prop}
+	It is routine to verify that the tensor product operation for vector bundles over a fixed base space is commutative, associative, and has an identity element, the trivial line bundle. It is also distributive with respect to direct sum.
+\end{prop}
+\begin{defn}
+	If we restrict attention to line bundles, then the set $\Vect^1(B)$ of isomorphism classes of one-dimensional vector bundles over $B$ is an abelian group with respect to the tensor product operation. The \textbf{\textit{inverse of a line bundle}} $E\to B$ is obtained by replacing its gluing matrices $g_{\beta\alpha}(x)\in\GL_1(\R)$ with their inverses. The cocycle condition is preserved since 1×1 matrices commute.
+\end{defn}
+
+\begin{remark}
+	(This paragraph is 14.2.2 from \cite{the-rising-sea}) Fix a rank $n$ vector bundle $E\to B$. The \textbf{\textit{sheaf of sections}} $\Fc$ of $E$ is an $\Oc_M$-module: given any open set $U$, we can multiply a section over $U$ by a function to get another section. {\color{cyan}(This is just like vector fields on a manifold.)}
+	
+	Now \cite{donaldson}. If $B$ is a Riemann surface $\Sigma$, we get the \textbf{\textit{sheaf of holomorphic sections of $E$}}. This is a sheaf of modules over the sheaf of rings $\Oc$ and is locally free of rank $r$; that is, locally isomorphic to $\Oc\oplus\ldots\oplus\Oc$. Conversely, any such sheaf arises from a vector bundle.
+\end{remark}
+\begin{defn}
+	The set of isomorphism classes of holomorphic line bundles forms a group with multiplication operation the fibrewise tensor product and {\color{magenta}inverses given by duals (surely it would be nice to see the equivalence between this and Hatcher's definition)}. This is the \textbf{\textit{Picard group $\Pic(\Sigma)$}}.
+\end{defn}
+\begin{example}
+	The tangent bundle and the cotangent bundles of $\Sigma$.
+\end{example}
+\begin{defn}
+	A \textbf{\textit{divisor}} on a compact Riemann surface $\Sigma$ is a map from $\Sigma$ to $\Z$ which is zero for all but finitely many points.
+\end{defn}
 	
 \section{coherent sheaves}
+
+(From Telegram.)
 
 \begin{defn}A sheaf of $A$-modules $\Fc$ over a sheaf of rings $A$ (on a topological space $X$) is called
 	\begin{itemize}
@@ -501,7 +740,8 @@ In contrast, locally finitely generated means there is a covering, that restrict
 \end{thm}
 \clearpage
 
-\section{abelian categories}
+\section{Lecture notes}
+\subsection{abelian categories}
 \begin{defn}
 	A category is \textbf{\textit{pre-additive}} if $\Hom_\Cc(M,N):=\Cc(M,N)$ has a structure of abelian groups, that is, $\Cc(M,N)$ is an abelian group and composition $\Cc(M,N)\times\Cc(N,L)\to\Cc(M,K)$ is bilinear. So
 	\[\begin{tikzcd}[column sep=huge]
@@ -574,7 +814,7 @@ In contrast, locally finitely generated means there is a covering, that restrict
 	\end{itemize}
 \end{defn}
 
-\section{derived functors}
+\subsection{derived functors}
 Consider the functor of global sections $\Gamma:\Ab(X)\to\Ab$. It is additive and left-exacts. Its derived functors are called cohomology.
 
 To compute $H^k(X,\Fc)$ we can use a resolution of $\Fc$ by \textbf{\textit{acyclic objects}} (with no higher cohomology).
@@ -668,7 +908,7 @@ To compute $H^k(X,\Fc)$ we can use a resolution of $\Fc$ by \textbf{\textit{acyc
 	So we have that Cartan B implies that $\Pic X^{\an}=0$, but $\Pic^{\alg}\cong X$.
 \end{remark}
 
-\section{line bundles and divisors}
+\subsection{line bundles and divisors}
 There's a correspondence between line bundles and divisors.
 \begin{defn}\leavevmode
 	\begin{itemize}
@@ -705,7 +945,7 @@ There's a correspondence between line bundles and divisors.
 \begin{defn}
 	$D$ is \textbf{\textit{Q-Cartier}} if there exists $N$ such that $ND$ is Cartier.
 \end{defn}
-\begin{prop}
+\begin{prop}[Regarding the last example]
 	No multiple of $D_1$ is Cartier.
 \end{prop}
 \addcontentsline{toc}{section}{References}
