@@ -1,20 +1,20 @@
 \documentclass{article}
 
+\usepackage[style=authortitle-terse,backref,backend=bibtex]{biblatex}
+\addbibresource{complex-geometry.bib}
+
 \usepackage[left=4cm, right=4cm]{geometry}
-\usepackage{palatino}%Fuente
-\usepackage{eulervm}%Fuente
-\usepackage{graphicx}%Imágenes
-\usepackage{float}%Imágenes
-\usepackage{subcaption}%Imágenes
-\usepackage{enumitem}%Listas
-\usepackage{parskip}%Espacio entre párrafos
+\usepackage{palatino}
+\usepackage{eulervm}%equations font
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{parskip}
 \usepackage{multicol}
-\usepackage{amsthm,thmtools,xcolor}
-\usepackage{amssymb}%Mate
-\usepackage{amsmath}%Mate
-\usepackage{tikz}%Mate (diagramas)
+\usepackage{amsthm,thmtools,xcolor,amssymb,amsmath}
+\usepackage{tikz,tikz-cd}
 \usepackage{dutchcal}
-\usepackage{tikz-cd}
 \usepackage{xcolor}
 \definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
 \usetikzlibrary{%
@@ -22,10 +22,8 @@
 	calc,%
 	arrows,%
 	shapes,
-	decorations.markings,backgrounds,calc,intersections
-}
+	decorations.markings,backgrounds,calc,intersections}
 \usepackage[bookmarks,bookmarksopen,bookmarksdepth=3]{hyperref}
-\usepackage{cleveref}
 \hypersetup{%colores
 	colorlinks=true,
 	urlcolor=blue,
@@ -35,20 +33,12 @@
 	urlbordercolor=white,
 	linkbordercolor=white,
 	citebordercolor=white,
-	filebordercolor=white
-}
+	filebordercolor=white}
+	\usepackage{cleveref}
 
-\makeatletter %Hide section number
-\def\@seccntformat#1{%
-	\expandafter\ifx\csname c@#1\endcsname\c@section\else
-	\csname the#1\endcsname\quad
-	\fi}
-\makeatother
+\setcounter{secnumdepth}{0}
 \usepackage{sectsty}
 \sectionfont{\fontsize{13}{20}\selectfont}
-
-\usepackage[style=authortitle,backend=bibtex]{biblatex}
-\addbibresource{complex-geometry.bib}
 
 \definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
 \definecolor{azure}{rgb}{0.0, 0.5, 1.0}
@@ -69,8 +59,6 @@
 \definecolor{persiangreen}{rgb}{0.0, 0.65, 0.58}
 \definecolor{persianyellow}{rgb}{0.9, 0.89, 0.0}
 
-\theoremstyle{definition}
-
 \declaretheoremstyle[headfont=\color{trueblue}\normalfont\bfseries,]{colored1}
 \declaretheoremstyle[headfont=\color{forestgreen}\normalfont\bfseries,]{colored2}
 \declaretheoremstyle[headfont=\color{peru}\normalfont\bfseries,]{colored3}
@@ -82,20 +70,22 @@
 \declaretheoremstyle[headfont=\color{peru}\normalfont\bfseries,]{colored9}
 \declaretheoremstyle[headfont=\color{persiangreen}\normalfont\bfseries,]{colored10}
 
-\declaretheorem[style=colored1,numberwithin=section,name=Theorem]{thm}
-\declaretheorem[style=colored2,numberwithin=section,numberlike=thm,name=Proposition]{prop}
-\declaretheorem[style=colored3,numberwithin=section,numberlike=thm,name=Lemma]{lemma}
-\declaretheorem[style=colored4,numberwithin=section,numberlike=thm,name=Corollary]{coro}
-\declaretheorem[style=colored5,numbered=no,name=Example]{example}
-\declaretheorem[style=colored5,numbered=no,name=Examples]{examples}
-\declaretheorem[style=colored6,numbered=no,name=Exercise]{exercise}
-\declaretheorem[style=colored7,numberwithin=section,name=Remark]{remark}
-\declaretheorem[style=colored7,numberwithin=section,name=Observation]{obs}
-\declaretheorem[style=colored9,numbered=no,name=Claim]{claim}
-\declaretheorem[style=colored8,numbered=no,name=Definition]{defn}
-\declaretheorem[style=colored10,numbered=no,name=Question]{question}
+\declaretheorem[style=colored1,name=Theorem]{thm}
+\declaretheorem[style=colored2,numberlike=thm,name=proposition]{prop}
+\declaretheorem[style=colored3,numberlike=thm,name=lemma]{lemma}
+\declaretheorem[style=colored4,numberlike=thm,name=corollary]{coro}
+\declaretheorem[style=colored5,numbered=no,name=example]{example}
+\declaretheorem[style=colored5,numbered=no,name=examples]{exemplos}
+\declaretheorem[style=colored6,numbered=no,name=exercise]{exercise}
+\declaretheorem[style=colored7,numbered=no,name=remark]{remark}
+\declaretheorem[style=colored8,numbered=no,name=claim]{claim}
+\declaretheorem[style=colored9,numbered=no,name=definition]{defn}
+\declaretheorem[style=colored10,numbered=no,name=question]{question}
 
-\numberwithin{equation}{section}
+\makeatletter%Instead of bigwedge
+\newcommand{\extp}{\@ifnextchar^\@extp{\@extp^{\,}}}
+\def\@extp^#1{\mathop{\bigwedge\nolimits^{\!#1}}}
+\makeatother
 
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\R}{\mathbb{R}}
@@ -177,13 +167,21 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\PGL}{PGL}
 \DeclareMathOperator{\PSL}{PSL}
-
+\DeclareMathOperator{\Car}{Car}
+\DeclareMathOperator{\Prin}{Prin}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\kod}{kod}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\Mfld}{Mfld}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\End}{End}
 
 \begin{document}
 {\Huge complex geometry}
 \tableofcontents
-\section{abstract nonsense}
 
+\section{abstract nonsense}
 \begin{defn}\leavevmode
 	\begin{itemize}
 		\item A \textbf{\textit{pullback}} of the morphisms $f$ and $g$ consists of an object $P$ and two morphisms $p_1:P\to X$ and $p_2:P\to Y$ satisfying the following universal property:
@@ -204,7 +202,7 @@
 			&X\sqcap Y\arrow[r,"p_2"]\arrow[d,"p_1",swap]&Y\\
 			&X
 		\end{tikzcd}\]
-		\item A \textbf{\textit{coporoduct}} of $X$ and $Y$ is an object $X\sqcup Y$ and a pair of morphisms $i_1:X\to X\sqcup Y$, $i_2:Y\to X\sqcup Y$ satisfying the following universal property:
+		\item A \textbf{\textit{coproduct}} of $X$ and $Y$ is an object $X\sqcup Y$ and a pair of morphisms $i_1:X\to X\sqcup Y$, $i_2:Y\to X\sqcup Y$ satisfying the following universal property:
 		\[\begin{tikzcd}
 			&Y\arrow[d,"i_2"]\arrow[ddr,bend left,"j_2"]\\
 			X\arrow[r,"i_1",swap]\arrow[drr,bend right,swap,"j_1"]&X\sqcup Y\arrow[dr,dashed,"\phi"]\\
@@ -285,7 +283,7 @@ This leads to the definition of a sheaf.
 \begin{defn}
 	A pre-sheaf $\Fc$ is called a \textbf{\textit{sheaf}} if $(iii)$ and $(iv)$ are satisfied.
 \end{defn}
-\begin{examples}\leavevmode
+\begin{example}\leavevmode
 	\begin{itemize}
 		\item The constant pre-sheaf $\R$, for which $\Fc(U)=\R$ for all open subsets $\varnothing\neq U\subset M$ is not a sheaf as soon as $M$ contains a disconnected open subset. So, one works rather with the \textbf{\textit{constant sheaf(!) $\underline{\R}$}}, which, on an open set $U\subset M$ yields the set of all continuous functions $f:U\to\R$, where $\R$ is endowed with the discrete topology.
 	
@@ -296,7 +294,7 @@ This leads to the definition of a sheaf.
 		
 		Since the vector bundle $E$ can be recovered from its sheaf of sections $\Ec$, one often uses the same notation $E$ for both.
 	\end{itemize}
-\end{examples}
+\end{example}
 
 \begin{defn}
 	Let $\Fc$ and $\Gc$ be two (pre-)sheaves. A \textbf{\textit{(pre-)sheaf homomorphism}} $\varphi:\Fc\to\Gc$ is given by group homomorphisms (linear maps, ring homomorphisms, etc.) $\varphi_U:\Fc(U)\to\Gc(U)$ for any open subset $U\subset M$ satisfying $r_{U,V}^{\Gc}\circ \varphi_V=\varphi_U\circ r_{U,V}^{\Fc}$ for any $U\subset V$.
@@ -777,9 +775,6 @@ In contrast, locally finitely generated means there is a covering, that restrict
 \begin{lemma}[Yoneda]
 	$h:\Cc\to\Fun(\Cc^{\op},\Sets)$ naturally.
 \end{lemma}
-\begin{examples}
-	content...
-\end{examples}
 \begin{defn}
 	$\img(f)=\ker(\coker(f))$
 \end{defn}
@@ -913,12 +908,51 @@ There's a correspondence between line bundles and divisors.
 \begin{defn}\leavevmode
 	\begin{itemize}
 		\item Morally, \textbf{\textit{divisors}} are formal linear combinations of irreducible Weil divisors (irreducible algebraic subvarieties of codimension 1), $\sum_{\text{finite}}a_iD_i$ with $a_i\in\Z$.
-		\item \textbf{\textit{Cartier divisors}} are the ones that are \textit{locally} given as divisors of \textit{rational function ones}. That means that there is (or maybe, \textit{it is}) a covering $\Uc=\{U_i\}$ and on each $U_i$ one is given by $\varphi_i=p_i/q_i$, where
-		\item a \textbf{\textit{meromorphic function on $U$}} is given by $U=\bigcup V_i$ with $V_i$ connected, so on $V_i$ pick two homolorphic functions $p_i,q_i$ such that $q_i\not\equiv0$, then the meromorphic function is $\varphi_i=p_i/q_i$. So on $U_{ij}$ we have that $\varphi_i=\varphi_j$, that is $p_iq_i=p_jq_j$.
+		\item Cartier divisors are the ones that are \textit{locally} given as divisors of \textit{rational function ones}. So a \textbf{\textit{Cartier divisor}} is a covering $\Uc=\{U_i\}$ and the choice of a meromorphic function $\varphi_i=p_i/q_i$ on each $U_i$ up to equivalence as explained in the following item.
+		\item Recall that a \textbf{\textit{meromorphic function on $U$}} is given by $U=\bigcup V_i$ with $V_i$ connected, so on $V_i$ pick two homolorphic functions $p_i,q_i$ such that $q_i\not\equiv0$, then the meromorphic function is $\varphi_i=p_i/q_i$. So on $U_{ij}$ we have that $\varphi_i=\varphi_j$, that is $p_iq_i=p_jq_j$.
 	
 		\textit{So I don't ask that the two functions coincide in the intersection, but rather that the quotient is holomorphic in the intersection.}
+		
 	\end{itemize}
 \end{defn}
+Consider the sheafs of $\Mc_X$ of meromorphic functions, its "multiplicative" sheaf $\Mc^*_X$ and $\Oc^*_X$. Then, \textbf{\textit{Cartier divisors}} are sections of the sheaf $\Mc_X^*/\Oc_X^*$. We have an exact sequence
+\[\begin{tikzcd}
+	1\arrow[r]&\Oc_X^*\arrow[r,hook]&\Mc_X^*\arrow[r]&\Mc_X^*/\Oc_X^*\arrow[r]&1
+\end{tikzcd}\]
+If $X$ is connected we also have
+\[\begin{tikzcd}
+	1\arrow[r]&\Gamma(X,\Oc_X^*)\arrow[r]&\Gamma(X,\Mc_X^*)\arrow[r]&\Car X\arrow[r,"\alpha"]&H^1(X,\Oc_X^*)=\Pic X\arrow[r]&\cdots
+\end{tikzcd}\]
+so notice that $\ker\alpha$ is the image of the previous map, which assigns a meromorphic function to its divisor class. The name of such group is the \textbf{\textit{principal divisors $\Prin X$}} and the name of the quotient $\Car X/\Prin X$ is \textbf{\textit{divisor class group}}. Also we have
+\[\dfrac{\Car X}{\Prin X}\subset\dfrac{\Div X}{\Prin X}\]
+\begin{claim}
+	Assume $\Gamma(X,\Lc)\neq0$. Then $\Lc\subset\img(\alpha)$
+\end{claim}
+\begin{proof}
+	Let $s\in\Gamma(X,\Lc)\backslash0$. We associate $(s)=\sum_D\ord_D(s)\cdot D$ where the order is defined using an isomorphism between $\Lc_x$ and $\Oc_{X,x}$, which might not be unique, but we have the following diagram
+	\[\begin{tikzcd}
+		&\Oc_{X,x}\arrow[d,"\cong"]\\
+		\Lc_x\arrow[r,"\cong\text{,}\psi_x"]&\Oc_{X,x}
+	\end{tikzcd}\]
+	Translation: we have a well-defined notion of order for holomorphic functions that has something to do with the order of the zeroes and the poles. We map a section to a holomorphic function which is unique up to some equivalence and that's all.
+	
+	So that equivalence thing goes as follows:
+	\begin{align*}
+		f_i\in\Gamma(U_i,\Oc_X) \text{ s.t. } f_j=\alpha_{ji}f_i\text{ on }U_{ij}\\
+		s\in\Mc_X(f),f_i\in\Gamma(U_i,\Mc_x)\text{ s.t. }f_j=\alpha_{ji}f_i\text{ on }U_{ij}.
+	\end{align*}
+\end{proof}
+\begin{claim}
+	$\Oc_X((s))\cong\Lc$.
+\end{claim}
+\begin{proof}
+	Exercise
+\end{proof}
+So,
+\begin{quote}
+	{\color{red}$\img\alpha$ is just the line bundles that admit a non-zero mermorphic section!}
+\end{quote}
+Let us show how operations on sections work. Take $s_1\in\Gamma(X,\Lc_1)$, which corresponds to $f_i$ and $\alpha_{ij}$, and $s_2\in\Gamma(X,\Lc_2)$, which corresponds to $f_j$ and $\alpha_{ij}'$. Then we get $s_1\otimes s_2\in\Gamma(X,\Lc_1\otimes\Lc_2)$ and $f_i\cdot f_i'$ along with $\alpha_{ij}\alpha_{ij}'$. {\color{magenta}The same goes for $s_i\in\Mc_X(\Lc_i)$. (?)} Also we have inverses given by $s^{-1}\in\Mc(\Lc^{-1})$ as $\frac{1}{f_i}$ for $s\in\Mc(\Lc)$.
 \begin{remark}\leavevmode
 	\begin{itemize}
 		\item Cartier divisors $\subset$ Weil divisors.
@@ -934,7 +968,7 @@ There's a correspondence between line bundles and divisors.
 		\end{quote}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.7\linewidth]{divisor}
+			\includegraphics[width=0.4\linewidth]{divisor}
 			\caption{$xy=z^2$}
 			\label{fig:divisor}
 		\end{figure}
@@ -948,6 +982,200 @@ There's a correspondence between line bundles and divisors.
 \begin{prop}[Regarding the last example]
 	No multiple of $D_1$ is Cartier.
 \end{prop}
+
+\subsection{the hodge decomposition}
+Now let's do some differential forms. Take local coordinates $z_1,\ldots,z_n$. We have that
+\[df=f_1dz_1+\ldots+f_ndz_n\]
+for
+\[f_i=\frac{\partial}{\partial z_i}f_i:=\partial_if.\]
+Now define
+\[z_k=x_k+iy_k\qquad\text{and}\qquad\bar{z}_k=x_k-iy_k.\]
+So $dx_1,dy_1,\ldots,dx_n,dy_n$ is a basis of $\Omega^{1,\Cinf}$. Now multiply by $\C$ to get $\overset{\Cinf}{T^*}\otimes_\R\C$ which is where the basis forms
+\[dz_k=dx_k+idy_k\qquad\text{and}\qquad d\bar{z}_k=dx_k-idy_k\]
+live. Also we have the map
+\begin{align*}
+	d:\Oc_X&\to\overset{\Cinf}{T^*}\otimes_\R\C\\
+	f&\mapsto df
+\end{align*}
+And there exist some functions $G_{k\ell}(z,\bar{z})$ to change from some coordinates $z_k$ to other coordinates $w_k$.
+
+Recall that
+\begin{align*}
+	\ell(\Lc)&=h^0(\Lc)=\dim\Gamma(X,\Lc)\\
+	\ell(D)&=\ell(\Oc(D))\\
+	h^k(E)&=\dim H^k(X,E).
+\end{align*}
+And then recall very quickly that for a vector space $V$ we have a \textbf{\textit{almost complex structure}} $J\in\End(V)$ such that $J^2=\id$ which has eigenvalues $\pm1$ (forcing the dimension of $V$ to be an even number) and complexify $V_\C:=V\otimes_\R\C$ to obtain the eigenspace decomposition
+\[V^{1,0}_{\C}:=\ker(J-i)\qquad\text{and}\qquad V^{0,1}_{\C}:=\ker(J+i).\]
+Now $J$ induces a map on the dual vector space
+\[J:V\to V^*\]
+given by
+\[Jf(v)= f(Jv)\]
+and in fact that goes all the way to
+\[\mathbb{J}:\extp^{\bullet}V_{\C}^*\]
+And then that Grassman algebra has a natural decomposition because each copy of $V^*_\C$ is already $V^*_{\C}=V^{0,1}\oplus V^{1,0}$ so we will denote equivalently by
+\[\Ac^{p,q}=\extp^{p,q}T^*_{\C}=\Omega^{p,q}\]
+\begin{remark}[\cite{voisin-intro}]
+	The decomposition
+	\begin{equation}\label{eq:hodge-decomposition1}
+		T_{X,x}\otimes\C=T^{1,0}_{X,x}\oplus T^{0,1}_{X,x}
+	\end{equation}
+	induced by the almost complex structure $J_x$ that every tangent space of a complex manifold naturally has induces a similar decomposition on the bundles of differential forms
+	\[\Omega_{X,\C}^k:=\Omega_{X,\R}^k\otimes\C=\bigoplus_{p+q=k}\Omega_X^{p,q},\]
+	where
+	\begin{equation}\label{eq:hodge-decomposition2}
+		\Omega^{p,q}_X\cong \extp^p\Omega^{1,0}_X\otimes\Omega^{0,1}_X
+	\end{equation}
+	and
+	\[\Omega_{X,\R}\otimes\C=\Omega^{1,0}_X\oplus\Omega^{0,1}_X\]
+	is just the dual decomposition of \cref{eq:hodge-decomposition1}. The decomposition \cref{eq:hodge-decomposition2} has the property of Hodge symmetry
+	\[\overline{\Omega_X^{p,q}}=\Omega^{q,p}_X,\]
+	where complex conjugation acts naturally on $\Omega^k_{X,\C}$.
+\end{remark}
+Back to our lecture, we have de Rham differentials 
+\begin{align*}
+	\Ac^{0,0}&\overset{d}{\to}\Ac^{1,0}\oplus\Ac^{0,1}\\
+	\Ac^{0,0}&\overset{\partial}{\to}\Ac^{1,0}\\
+	\Ac^{0,0}&\overset{\bar\partial}{\to}\Ac^{0,1}
+\end{align*}
+so that $d=\partial+\bar\partial$. (Alternative notation is $d=d'+d''$.) And in general:
+\begin{align*}
+	\Ac^{p,q}&\overset{d}{\to}\Ac^{p+1,q}\oplus\Ac^{p,q+1}\\
+	\Ac^{p,q}&\overset{\partial}{\to}\Ac^{p+1,q}\\
+	\Ac^{p,q}&\overset{\bar\partial}{\to}\Ac^{p,q+1}
+\end{align*}
+and $J$ is \textbf{\textit{integrable}} if $\bar\partial^2=0$ which means that we not only have the de Rham complex but also its complex version $(\Ac^{p,\bullet},\bar\partial)$.
+\begin{lemma}[$\partial\bar\partial$, Grothendieck $\sim$1958]
+	$H^\bullet(\Ac^{p,\bullet},\bar\partial)=\Omega^p_X[0]$ there's an exact long sequence of sheaves
+	\[\begin{tikzcd}
+		\Omega_X^p\arrow[r]&\Ac^{p,0}\arrow[r,"\bar\partial"]&\Ac^{p+1}\arrow[r]&\cdots
+	\end{tikzcd}\]
+\end{lemma}
+which means there is a resolution of holomorphic functions and we may compute cohomology. So we will know the \textbf{\textit{Hodge numbers}}
+\[h^{p,q}(X):=h^q(\Omega^p_X).\]
+
+Back to divsors,
+\[\Gamma(U,\Oc(D))=\{f\in\Mc_X(U),(f)+D\geq0\}\]
+and the divisor is
+\[D=\underbrace{D_+}_{\text{zeroes}}-\underbrace{D_-}_{\text{poles}}\]
+\paragraph{important results}
+\begin{thm}[Riemann-Roch]
+	\[\chi(X,\Lc):=\sum(-1)^kh^k(X,\Lc)\]
+	\[\chi(X,\Lc)=\int_X\ch(\Lc)-Tdx\]
+\end{thm}
+\begin{thm}[Kodaira vanishing theorem]
+	\[h^k(X,\omega_X(D)=0)\]
+	for all $k>0$ if $D$ is ample.
+\end{thm}
+\begin{thm}[Serre duality]
+	\[H^?(X,\Lc)^\vee=H^{n-k}(X,\omega_X\otimes\Lc^*)\]
+\end{thm}
+\begin{thm}[Hodge]
+	For some subclass of $\Mfld$, Khäler,
+	\[H^n(X,\C)=\bigoplus H^{p,q}.\]
+\end{thm}
+From \cite{voisin-intro}: the most important theorem proved in this book is the following:
+\begin{thm}
+	Let $H^{p,q}(X) \subset H^k(X,\C)$ be the set of classes which are representable by a closed form $\alpha$ which is of type $(p,q)$ at every point $x$ in the decomposition \cref{eq:hodge-decomposition2}. Then we have a decomposition
+	\[H^k(X,\C)=\bigoplus_{p+q=k}H^{p,q}(X).\]
+\end{thm}
+Now consider the graded ring
+\[R(X,\Lc)=\bigoplus_{k\geq0}\Gamma(X,\Lc^{\otimes k}).\]
+It can be finitely generated or not. If $X$ is compact and $\Lc$-ample, however, yes. In fact
+\[\kod(X,\Lc)=\]
+\[\kod(X,\text{ample})=\dim X\]
+\[\kod(X):=\kod(X,\omega_X)\]
+and plurigenera are dimensions of the components of the graded ring $R(X,\Lc)$, that is,
+\[\operatorname{pm}(X):=\dim\Gamma(X,\omega_X^{\otimes k})\]
+and also
+\[p_m(X)\sim m^{\kod(X)}\cdot c,\]
+\[ae\in\{-\infty,0,1,2,\ldots,\dim X\}.\]
+Where $-\infty$ stands for $p_m=0\;\forall m>0$.
+
+Call $R(X,\omega_X)$ the \textbf{\textit{canonical ring}}.
+\begin{thm}[Caseini, et al. 2006]
+	$X$ compact, bipar
+\end{thm}
+Also define the \textbf{\textit{algebraic dimension}} to be
+\[a(X)=\trdeg\Gamma(X,\Mc_X).\]
+\begin{thm}[Siegel]
+	If $X$ is compact,
+	\[a(X)\leq\dim_\C X.\]
+\end{thm}
+And it turns out that $a(x)\geq\kod(X)$, and that $ae(X)\leq a(X)\leq \dim X$.
+\subsection{three classical problems - 3apr}
+\begin{question}[first Cousin problem, additive]
+	In 1d Mittag-Leffler theorem.
+	\[\Gamma(X,\Mc)\to\Gamma(X,\Mc/\Oc)\]
+	is surjective? Injective?
+	
+	Suppose $X=\bigcup U_i$. Given $f_i\in\Gamma(U_1,\Mc)$ s.t. $f_i-f_j\in\Gamma(U_{ij},\Oc)$ does there exist $f\in\Gamma(X,\Mc)$ s.t. $f_i-f_j\in\Gamma(U_{j},\Oc)$?
+	
+	In this case we have
+	\[\begin{tikzcd}
+		\Gamma(X,\Mc)\arrow[r]&\Gamma(X,\Mc/\Oc)\arrow[r,"\delta"]&H^1(X,\Oc)
+	\end{tikzcd}\]
+\end{question}
+\begin{question}[second Cousin problem, multiplicative]
+	(In 1d-Weierstrass theorem)
+	\[\Gamma(X,\Mc^*)\to\Gamma(X,\Mc^*/\Oc^*)\]
+	
+	Suppose $X=\bigcup U_i$. Given $f_i\in\Gamma(U_1,\Mc)$ s.t. $f_i/f_j\in\Gamma(U_{ij},\Oc)$ does there exist $f\in\Gamma(X,\Mc)$ s.t. $f_i/f_j\in\Gamma(U_{j},\Oc)$?
+	
+	Is it true that every Cartier divisor is a divisor of a {\color{cyan}holomorphic (?)} function?
+	
+	So Weierstrass theorem says for any discrete set in a disk there's a holomorphic function that vanishes in this discrete set. This is a generalization of that theorem.
+	
+	Now we have
+	\[\begin{tikzcd}
+		\Gamma(X,\Mc)\arrow[r]&\Gamma(X,\Mc/\Oc)\arrow[r,"\delta"]&H^1(X,\Oc^*)=\Pic(X)
+	\end{tikzcd}\]
+\end{question}
+\begin{question}[Poincaré problem]
+	Given $f\in\Gamma(X,\Mc)$ does there exists a pair $P,Q\in\Gamma(X,\Oc)$ such that
+	\[f=\frac{P}{Q}\]
+	and $P,Q$ are everywhere coprime? (for all $x\in X$, $P,Q\in\Oc_{X,x}$ are coprime?) 
+\end{question}
+\textbf{Today:}
+\begin{claim}
+	$H^1(X,\Oc)=0$ for polydisks and punctures polydisks.
+\end{claim}
+\begin{coro}
+	$H^k(X,\Oc)=0$ for polydisks and punctures polydisks.
+\end{coro}
+\begin{lemma}
+	For every divisor $D$ exists a unique decomposition $D=Z-P$ with $Z,P\geq0$, $\min(Z,P)>0$.
+\end{lemma}
+If $X$ is compact, then $f$ is determined $f\in\Mc_X^*$ by $f$ up to a constant.
+\[(f)=(g)\iff\exists\lambda\in\C^*:f=\lambda g\]
+\begin{claim}
+	\[S^kV^*\to\Gamma(\P(V),\Oc(k))\]
+	is surjective (which implies it is an isomorphism.)
+\end{claim}
+\begin{proof}
+	Done in lecture, uses Hartog's theorem.
+\end{proof}
+\begin{remark}
+	If $D\subset\P(V)$ is a hypersurface it is algebraic.
+\end{remark}
+Then let's do the hard work.
+\begin{lemma}[Poincaré $\bar\partial$-lemma in 1 dimension]
+	(Serre-58, from unpublished by Grothendieck and Polbeant. Find in \cite{griffiths} p 5, \cite{voisin-intro} ch 1, \cite{huybrechts} ch 1.)
+	
+	Let $\Omega$ be a domain in $\C$. For all $g\in\Cinf(\Omega,\C)$, for all point $p\in\Omega$ there exists a neighbourhood $U$ of $p$ and a function $f\in\Cinf$ such that
+	\[\frac{\partial f}{\partial\bar{z}}g.\]
+\end{lemma}
+\begin{proof}
+	
+\end{proof}
+
+\begin{lemma}[$\bar\partial$-Poincaré lemma for $q>0$]
+	Given $\alpha\in\Ac^{p,q}(\bar B_r)$ such that $\bar\partial \alpha=0$ there exists $\varepsilon$ and  $\beta\in\Ac^{p,q-1}(\bar B_{r-\varepsilon})$ such that
+	\[\begin{tikzcd}
+		\Ac^{p,q-1}\arrow[r,"\bar\partial"]&\Ac^{p,q}\arrow[r,"\bar\partial"]&\Ac^{p,q+1}
+	\end{tikzcd}\]
+\end{lemma}
+
 \addcontentsline{toc}{section}{References}
 \printbibliography
 \end{document}
