@@ -1,22 +1,18 @@
 \documentclass{article}
 
-\usepackage[style=authortitle-terse,backref,backend=bibtex]{biblatex}
-\addbibresource{complex-geometry.bib}
+%\usepackage[style=authortitle-terse,backref]{biblatex}
+%\addbibresource{complex-geometry.bib}
+
+\setcounter{secnumdepth}{0}
+\usepackage{sectsty}
+\sectionfont{\fontsize{13}{20}\selectfont}
 
 \usepackage[left=4cm, right=4cm]{geometry}
-\usepackage{palatino}
-\usepackage{eulervm}%equations font
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{subcaption}
-\usepackage{enumitem}
-\usepackage{parskip}
-\usepackage{multicol}
+\usepackage{palatino,eulervm,dutchcal,xcolor}%fonts
+\usepackage{graphicx,subcaption,float}
+\usepackage{enumitem,parskip,multicol}
 \usepackage{amsthm,thmtools,xcolor,amssymb,amsmath}
 \usepackage{tikz,tikz-cd}
-\usepackage{dutchcal}
-\usepackage{xcolor}
-\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
 \usetikzlibrary{%
 	matrix,%
 	calc,%
@@ -35,10 +31,6 @@
 	citebordercolor=white,
 	filebordercolor=white}
 	\usepackage{cleveref}
-
-\setcounter{secnumdepth}{0}
-\usepackage{sectsty}
-\sectionfont{\fontsize{13}{20}\selectfont}
 
 \definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
 \definecolor{azure}{rgb}{0.0, 0.5, 1.0}
@@ -69,18 +61,20 @@
 \declaretheoremstyle[headfont=\color{green(ncs)}\normalfont\bfseries,]{colored8}
 \declaretheoremstyle[headfont=\color{peru}\normalfont\bfseries,]{colored9}
 \declaretheoremstyle[headfont=\color{persiangreen}\normalfont\bfseries,]{colored10}
+\declaretheoremstyle[headfont=\color{green(ncs)}\normalfont\bfseries,]{colored11}
 
-\declaretheorem[style=colored1,name=Theorem]{thm}
+\declaretheorem[style=colored1,name=theorem]{thm}
 \declaretheorem[style=colored2,numberlike=thm,name=proposition]{prop}
 \declaretheorem[style=colored3,numberlike=thm,name=lemma]{lemma}
 \declaretheorem[style=colored4,numberlike=thm,name=corollary]{coro}
 \declaretheorem[style=colored5,numbered=no,name=example]{example}
-\declaretheorem[style=colored5,numbered=no,name=examples]{exemplos}
-\declaretheorem[style=colored6,numbered=no,name=exercise]{exercise}
+\declaretheorem[style=colored5,numbered=no,name=examples]{examples}
+\declaretheorem[style=colored7,numbered=no,name=exercise]{exercise}
 \declaretheorem[style=colored7,numbered=no,name=remark]{remark}
 \declaretheorem[style=colored8,numbered=no,name=claim]{claim}
 \declaretheorem[style=colored9,numbered=no,name=definition]{defn}
 \declaretheorem[style=colored10,numbered=no,name=question]{question}
+\declaretheorem[style=colored11,numbered=no,name=conjecture]{conjecture}
 
 \makeatletter%Instead of bigwedge
 \newcommand{\extp}{\@ifnextchar^\@extp{\@extp^{\,}}}
@@ -124,19 +118,28 @@
 \newcommand{\Zc}{\mathcal{Z}}
 
 \newcommand{\mf}{\mathfrak{m}}
+\newcommand{\If}{\mathfrak{I}}
 \newcommand{\Cinf}{C^\infty}
 
 \DeclareMathOperator{\img}{img}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\td}{td}
 \DeclareMathOperator{\Alt}{Alt}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Mult}{Mult}
+\DeclareMathOperator{\Bl}{Bl}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Proj}{Proj}
 \DeclareMathOperator{\Ob}{Ob}
 \DeclareMathOperator{\Mor}{Mor}
 \DeclareMathOperator{\Top}{Top}
+\DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\CGWH}{CGWH}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Map}{Map}
@@ -151,9 +154,12 @@
 \DeclareMathOperator{\op}{op}
 \DeclareMathOperator{\Groups}{Groups}
 \DeclareMathOperator{\eq}{eq}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\Gr}{Gr}
 \DeclareMathOperator{\Fun}{Fun}
 \DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Sing}{Sing}
 \DeclareMathOperator{\an}{an}
 \DeclareMathOperator{\alg}{alg}
 \DeclareMathOperator{\Pic}{Pic}
@@ -173,9 +179,15 @@
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\kod}{kod}
 \DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Mfld}{Mfld}
 \DeclareMathOperator{\ch}{ch}
 \DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Area}{Area}
+\DeclareMathOperator{\Fix}{Fix}
+\renewcommand{\O}{\operatorname{O}}
 
 \begin{document}
 {\Huge complex geometry}
@@ -736,6 +748,18 @@ In contrast, locally finitely generated means there is a covering, that restrict
 \begin{thm}[Grauert's direct image theorem]
 	If $f:X\to Y$ if proper and $\Fc\in\Coh(X)$, then $f_*\Fc\in\Coh(X)$ and $\forall i \;R^i f_*\Fc\in\Coh Y$. (+ hom to relate )
 \end{thm}
+
+\section{kodaira's embedding theorem}
+The proof of de Rham is as follows.
+Any acyclic resolution
+\[\begin{tikzcd}
+	0\arrow[r]&\Fc\arrow[r,"i"]\arrow[dr]&Wow\\
+	&&wow
+\end{tikzcd}\]
+
+\begin{defn}
+	A holomorphic line bundle is \textbf{\textit{positive}} if there exists a Hermitian metric $h$ on $\Lc$ such that $\omega_{L,h}>0$.
+\end{defn}
 \clearpage
 
 \section{Lecture notes}
@@ -1007,7 +1031,25 @@ Recall that
 \end{align*}
 And then recall very quickly that for a vector space $V$ we have a \textbf{\textit{almost complex structure}} $J\in\End(V)$ such that $J^2=\id$ which has eigenvalues $\pm1$ (forcing the dimension of $V$ to be an even number) and complexify $V_\C:=V\otimes_\R\C$ to obtain the eigenspace decomposition
 \[V^{1,0}_{\C}:=\ker(J-i)\qquad\text{and}\qquad V^{0,1}_{\C}:=\ker(J+i).\]
-Now $J$ induces a map on the dual vector space
+\begin{remark}
+	A complex structure on a vector simulates the case of the operator $z\mapsto \sqrt{-1}z$ on the vector space of complex numbers. Recall that the operator $-\id$ on an euclidean space is orientation-preserving for even real-dimensions, such as those of the vector spaces $\C^n$. Thus, the operator $J$, which is interpreted as a rotation by 90 degrees, is composed with itself to yield an orientation-preserving isometry, $-\id$.
+	
+	In \href{https://en.wikipedia.org/wiki/Linear_complex_structure#Definition_and_properties}{wiki}, we see that A complex structure allows one to endow $V$ with the structure of a complex vector space. Complex scalar multiplication can be defined by
+	\[(x+\sqrt{-1}y)v:=xv+yJ(v),\]
+	and it is checked that this operation satisfies the axioms of a vector space over $\C$. {\color{cyan}Probably this is what we mean when we say we have \textbf{\textit{complexified}} the space $V$ to produce $V\otimes_\R\C$. The key of this reasoning is that this tensor product of two real vector spaces succesfully yields a complex vector thanks to $J$.}
+	
+	Futher in the same \href{https://en.wikipedia.org/wiki/Linear_complex_structure#Definition_and_properties}{wiki}, we find that it is not hard to see that every even-dimensional vector space admits a complex structure. One can define $J$ on pairs $e,f$ of basis vectors by $Je = f$ and $Jf = -e$ and then extend by linearity to all of $V$. If $(v_1, \ldots, v_n)$ is a basis for the complex vector space $V_J$, then $(v_1,Jv_1,\ldots,v_n,Jv_n)$ is a basis for the underlying real space $V$.
+	
+	Finally, A real linear transformation $A : V \to V$ is a \textbf{\textit{complex linear transformation}} of the corresponding complex space $V_J$ if and only if $A$ commutes with $J$, i.e. if and only if
+	\[AJ=JA\]
+	Likewise, a real subspace $U$ of $V$ is a \textbf{\textit{complex subspace}} of $V_J$ if and only if $J$ preserves $U$, i.e. if and only if
+	\[JU=U.\]
+\end{remark}
+\begin{remark}
+	Here's another interesting remark from \cite{piccione}, 1.4.24: Observe that if $(V,J)$ is a complex space endowed with a Hermitian product $g_s$, then the real part of $g_s$ is a positive inner product $g$ on $V$ and the imaginary part of $g_s$ is a symplectic form on $V$. 
+\end{remark}
+
+Back to our lecture, $J$ induces a map on the dual vector space
 \[J:V\to V^*\]
 given by
 \[Jf(v)= f(Jv)\]
@@ -1166,16 +1208,716 @@ Then let's do the hard work.
 	\[\frac{\partial f}{\partial\bar{z}}g.\]
 \end{lemma}
 \begin{proof}
-	
+	Define \[g:=P(z)*_zf\sim\int \frac{f(w)}{z-w}dw\wedge d\bar w\]
+	where $\sim$ means \textit{proportional} and $*$ is convolution.
 \end{proof}
+\begin{remark}
+	If for all $i$ we have $\partial_{\bar u_i}f=0$ then $\partial_{\bar u_i}g$ for all $i$.
+\end{remark}
 
 \begin{lemma}[$\bar\partial$-Poincaré lemma for $q>0$]
-	Given $\alpha\in\Ac^{p,q}(\bar B_r)$ such that $\bar\partial \alpha=0$ there exists $\varepsilon$ and  $\beta\in\Ac^{p,q-1}(\bar B_{r-\varepsilon})$ such that
+	Given $\alpha\in\Ac^{p,q}(\bar B_r)$ such that $\bar\partial \alpha=0$ there exists $\varepsilon$ and  $\beta\in\Ac^{p,q-1}(\bar B_{r-\varepsilon})$ such that $\alpha=\bar\partial\beta$. That is, the \textbf{\textit{Dolbeaut complex}}
 	\[\begin{tikzcd}
-		\Ac^{p,q-1}\arrow[r,"\bar\partial"]&\Ac^{p,q}\arrow[r,"\bar\partial"]&\Ac^{p,q+1}
+		\cdots\arrow[r]&\Ac^{p,q-1}\arrow[r,"\bar\partial"]&\Ac^{p,q}\arrow[r,"\bar\partial"]&\Ac^{p,q+1}\arrow[r]&\cdots
 	\end{tikzcd}\]
+	is \textit{locally} exact.
 \end{lemma}
+\begin{remark}\leavevmode
+	\begin{itemize}
+		\item The fact that $\bar\partial^2=0$, that is, that the Dolbeaut complex is a complex, is consequence of integrability.
+		\item Also by computation, the cohomology of
+		\[\begin{tikzcd}
+			0\arrow[r]&\Ac^{p,0}(E)\arrow[r]&\Ac^{p,1}(E)\arrow[r]&\cdots
+		\end{tikzcd}\]
+		is $\Gamma(X,\Omega^p\otimes E)$, where $\Omega^p\otimes E$ are holomorphic sections.
+	\end{itemize}
+\end{remark}
 
-\addcontentsline{toc}{section}{References}
-\printbibliography
+\subsection{geometric structures}
+\begin{defn}\leavevmode
+	\begin{itemize}
+		\item $I\in\End(V)$ such that $I^2=-\id$ is an \textbf{\textit{almost-complex structure}}
+		\item $g$ symmetric bilinear form over $\R$.
+		\item $\omega$ antisymmetric bilinear form over $\R$.
+		\item $h$ hermitian form bilinear over $\R$ but anilinear over. It is \textbf{\textit{sesquilinear}}, that is, for $\alpha,\beta\in\C$,
+		\[h(\alpha u,\beta v)=\bar\alpha\beta h(u,v).\]
+		Also, if we define $\bar V$ as the vector space with the same vectors as $V$ but with the scalar product $\alpha * v=\bar\alpha v$, we have
+		\begin{align*}
+			\bar V\otimes V&\to\C
+		\end{align*}
+		So the definition of \textbf{\textit{Hermitian}} form is that $h(v,u)=\overline{h(u,v)}$.
+	\end{itemize}
+\end{defn}
+Here are some relations. Given a Hermitian form $h$, we define $g=\Re h$ and $\omega=-\Im h$ to obtain
+\begin{equation}\label{eq:2-3}
+	h=g-i\omega.
+\end{equation}
+The point is that given $I$ and any one of $g,\omega$ or $h$ we can determine the remaining two. So for example start with $h$ hermitian, then \cref{eq:2-3} implies
+\[\overline{h(v,u)}=\overline{g(v,u)-i\omega(v,u)}=g(v,u)+i\omega(v,u)\]
+which implies that $g(u,v)=g(v,u)$ and $\omega(u,v)=-\omega(v,u)$.
+So we have three sets of data:
+\begin{enumerate}
+	\item $(I,h)$
+	\begin{itemize}
+		\item $h$ hermitian which means two things: $h(v,u)=\overline{h(u,v)}$ and
+		\item $h(-Iv,u)=h(u,Iv)=ih(u,v)$.
+	\end{itemize}
+	\item $(I,g)$
+	\begin{itemize}
+		\item $g(u,v)=g(v,u)$ and
+		\item $g(Iu,Iv)=g(u,v)$.
+	\end{itemize}
+	\item $(I,\omega)$
+	\begin{itemize}
+		\item $\omega(u,v)=\omega(v,u)$
+		\item $\omega(Iu,Iv)=\omega(u,v)$.
+	\end{itemize}
+\end{enumerate}
+Also notice that \textbf{\textit{positivity}} means, $\forall u$,
+\begin{itemize}
+	\item For $g$, that $g(u,u)\geq0$ and $g(u,u)=0\iff u=0$.
+	\item For $h$, that $h(u,u)\geq0$.
+	\item For $\omega$, that $\omega(Iu,u)=\omega(u,-Iu)>0$.
+\end{itemize}
+And I think positivy in either of them implies positivity in the three. Use that $\omega(u,u)$ vanishes.
+
+We also have the Lie groups
+\[\O(2n,\R)=\O(V,g),\qquad\Sp(2n,\R)=\Sp(V,\omega)\quad\text{and}\quad\GL(n,\C)=\GL_\C(V,I),\]
+which are all contained in $\GL(2n,\R)=\GL_\R(V)$ and in fact, the intersection of any two of them is
+\[\U(V,h)\]
+\begin{defn}
+	A \textbf{\textit{Khäler manifold}} is $(M,J;g,\omega,h)$ where $(M,J)$ is an almost-complex manifold,
+	\begin{itemize}
+		\item $J$ is integrable, that is $J:TM\to TM$ with $J^2=-\Id$, and is induced canonically by an holomorphic atlas,
+		\item $\omega$ is closed, that is, $d\omega=0$,
+		\item $g$ is a metric.
+	\end{itemize}
+\end{defn}
+\begin{thm}[Newlander-Nimberg]
+	A necessary condition for $J$ to be integrable is that bracket of homolomorphic sections is holomorphic, that is $[T^{1,0},T^{1,0}]\subset T^{1,0}$. Hard theorem by Newlander-Nimberg is that this condition is sufficient. Also, Voisin proves this for real analytic $J$, that is that
+\end{thm}
+\begin{defn}
+	\[\extp^{1,1}_\R=\{B\in\extp^{1,1}:\forall u,v\in V^{1,0},\;B(u,v)=0\}\]
+\end{defn}
+\begin{claim}
+	$\omega\in\bigwedge^{1,1}_\R$.
+\end{claim}
+\begin{thm}[Weak Lefschetz]
+	If $\omega$ is Khäler,
+	\begin{align*}
+		H^k(M,\R)&\to H^{2n-k}(M,\R)\\
+		\alpha&\mapsto \alpha\wedge[\omega]^{\wedge n-k}
+	\end{align*}
+	is an isomorphism.
+\end{thm}
+\begin{coro}
+	$H^k\underbrace{\to}_{\wedge\omega} H^{k+2}$. $k<n\implies$ mono and $k\geq n\implies$ epi. So we have the very strong properties on Betty numbers:
+	\[b_0\leq b_2\leq b_4\leq \ldots\leq b_{\text{diam}/2}\]
+	\[b_1\leq b_3\leq b_5\leq\ldots\leq b_{\text{diam}/2}\]
+\end{coro}
+
+In local coordinates $z_1,\ldots,z_n$, we know that
+\[T^*_\C=\Ac^{1,0}\oplus\Ac^{0,1}\]
+and $dz_1,\ldots, dz_n$ is a basis over $\Cinf$ for $\Ac^{1,0}$ and $d\bar z_1,\ldots d\bar z_n$ a basis for $\Ac^{0,1}$. The dual construction for the tangent bundle is $T^{1,0}$ with basis $\partial_{z_i}$ and $T^{0,1}$ with $\partial_{\bar{z}_i}$.
+
+Next we have $\Ac^{1,1}=\Ac^{1,0}\otimes_\Cinf\Ac^{0,1}$ with basis $dz_i\otimes d\bar z_j$ which in fact is just the same as $dz_i\wedge d\bar z_j$ by linear algebra since there is an isomorphism
+\[\extp^2(U\oplus V)=\extp^2U\oplus U\otimes V\oplus\extp^2U.\]
+ Now fix
+\[\omega=\sum_{i,j=1,\ldots, n}dz_i\wedge d\bar z_j,\]
+where $\omega_{ij}\in\Cinf\otimes\C=\Ac^0$. We impose the \textbf{\textit{reality condition}} of $\omega=\bar\omega$, which is equivalent by a acomputation to $\omega_{ij}=-\bar\omega_{ji}$.
+
+Then we compute
+\[\omega(a^i\partial_i+b^j\partial_{\bar j})=\omega_{ij}(a^id^j-b^jc^i).\]
+So fixing $a^i\partial_j:=u$ and $b^j\partial_{\bar j}:=v$ we get
+\begin{align*}
+	\omega(u+v,I(u+v))&=\omega_\C(u+v,\sqrt{-1}u-\sqrt{-1}v)\\
+	&=\sqrt{-1}\omega(u+v,u-v)\\
+	&=2\sqrt{-1}
+\end{align*}
+Now consider
+\[\begin{tikzcd}
+	&\Ac^{1,0}\arrow[dr,"-\bar\partial"]\\
+	\Ac^{0,0}=\Cinf\arrow[rr,"i\partial\bar\partial"]\arrow[ur,"\partial"]\arrow[dr,"\bar\partial",swap]&&\Ac^{1,1}\\
+	&\Ac^{0,1}\arrow[ur,"\partial",swap]
+\end{tikzcd}\]
+\begin{defn}
+	A function $f\in\Ac^{0,0}$ is called \textbf{\textit{psh (pluri-subharmonic)}} if $\partial\bar\partial f$ is Kähler form.
+\end{defn}
+By simple computations we can show it is closed, real and of type $1,1$.
+\begin{defn}
+	 If locally on $U$ we have that $\omega=i\partial\bar\partial f$, then $g$ is called a local \textbf{\textit{Khäler potential}} for $\omega$.
+\end{defn}
+\begin{defn}[Alternative (official) definition of psh]
+	$f:\Omega\to\R$ is psh if for any line we have
+	\[f(u)\leq\int_{B(u,r)}f(z)\Vol_B=\int_{B(u,r)}f(z)\frac{dxdy}{\Area(B)}\]
+\end{defn}
+We have also defined \textbf{\textit{Hessian metrics}}, which are defined on coordinate systems in contrast to psh functions.
+\begin{examples}[of psh functions]\leavevmode
+	\begin{itemize}
+		\item $f=\sum_k|z_k|$.
+		\item $\log|z_i|^2$.
+	\end{itemize}
+\end{examples}
+\begin{exercise}
+	$\P^n$ is Kähler.
+\end{exercise}
+\subsection{homology class of a complex submanifold}
+Hodge conjecture asks which cohomology classes are submanifolds. Consider $X\hookrightarrow Y$ with $Y$ compact and $X$ closed submanifold (or subvariety).
+\begin{enumerate}
+	\item There is a class $[X]\in H^{2k}(Y,\R)$.
+	\item $[X]\in H^{2k}(Y,\Z)$.
+	\item $[X]\in H^{k,k}(Y,\C)$.
+\end{enumerate}
+Items 2. and 3. imply $[X]\in H^{k,k}(Y,\Z)\subset H^{k,k}(Y,\C)$.
+\begin{conjecture}[Hodge]
+	$\forall\alpha\in H^{k,k}(Y,\Q)\exists N$ and $X\hookrightarrow Y$ such that $N[X]=\alpha$.
+\end{conjecture}
+Which in fact implies \textbf{\textit{Grothendieck's standard conjectures}}.
+\begin{thm}[Lefshetz theorem on $(1,1)$-classes]
+	Hodge conjecture is true for $k=1$.
+\end{thm}
+\begin{thm}[Hard Lefshetz theorem]
+	Hodge conjecture for $k$ implies Hodge conjecture for $\dim Y-k$.
+\end{thm}
+\subsection{fano manifolds}
+\begin{defn}
+	$X$ is \textbf{\textit{Fano manifold}} if $K_X$ is ample.
+\end{defn}
+\begin{thm}
+	$\pi_1(X)=0$.
+\end{thm}
+\begin{proof}[Proof 1]
+	KMM/Campion(?) Fano $\overset{\text{hard}}{\implies}$ rationally connected $\implies$ $\pi_1=0$.
+\end{proof}
+\begin{proof}[Proof]
+	Fano implies exists Khäler metric $g$ such that $\Ric(g)>0$.
+\end{proof}
+\begin{thm}[Serre's homological criterion of ampleness]
+	$\Lc\in\Pic(X)$ is ample if and only if for all $\Fc\in\Coh X\;\exists N$ such that $\forall n\geq N$ and $\forall k>0$,
+	\[H^k(X,\Fc\otimes\Lc^{\otimes n})=0.\]
+	It is equivalent that this condition holds for all $\Mc\in\Pic X$.
+\end{thm}
+\begin{thm}[Kleiman-Mori criterium for ampleness]
+	$D$ is ample if for all $\beta$ in the Mori Cone of $X$ we have
+	\[D\cdot\beta>0.\]
+\end{thm}
+\begin{defn}
+	We define the \textbf{\textit{group of $k$-cycles}} as
+	\[Z_k(X)=\bigoplus_{\substack{Y\subset X\\\text{irreducible}\\k\text{-dimensional}\\\text{complex}\\\text{subvarieties}}}\Z\cdot[Y]\]
+\end{defn}
+\begin{remark}
+	On $Z_k(X)$ there are 4 equivalence relations:
+	\begin{enumerate}
+		\item Rational equivalence. For $k=n-1$ this is just linear equivalence of divisors.
+		\item Algebraic equivalence.
+		\item Homological equivalence.
+		\item Numerical equivalence.
+	\end{enumerate}
+\end{remark}
+\begin{defn}
+	$Y\sim Y'\in Z_F(X)$ with $Y=\sum a_iY_i$ for $a_i\in\Z$, $Y'=\sum b_jYj$ with $b_j\in\Z$, if there exists
+	\[Z\in Z_{k-1}(\P^1\times X)\]
+	such that
+	\[Z\cap X_0\in Z_k(X_0)=Z_k(X)\quad\text{and}\quad Z\cap X_\infty\in Z_k(X_\infty)=Z_k(X).\]
+\end{defn}
+\begin{exercise}
+	Prove that rational equivalence of divisors is a linear equivalence.
+\end{exercise}
+\begin{defn}[Algebraic equivalence]
+	Replace $\P^1$ by any connected algebraic variety or just by any smooth algebraic curve $C$. Then $Z\subset X\times C$ and for $P,Q\in C$,
+	\[P_0=?\]
+\end{defn}
+[…]
+\begin{defn}
+	A divisor $D$ is called \textbf{\textit{numerically effective (nef)}} if for any curve $C\subset X$, $D\cdot C\geq0$.
+\end{defn}
+[…]
+First recall that
+\begin{thm}[Grauert]\leavevmode
+	\begin{itemize}
+		\item For all $k$, $h^k(E)<\infty$.
+		\item $\#\{k:h^k(E)\neq0\}<\infty$
+	\end{itemize}
+\end{thm}
+\begin{thm}[Hirzebruch-Riemann-Roch (HRR)]
+	$E$ vector bundle (or, more generally, $\Fc\in\Coh(X)$), $X$ compact complex manifold (eg. projective).
+	\[\chi(X,E)=\int_{[X]}\ch(E)\smile \Td_X\]
+	where
+	\begin{itemize}
+		\item $\chi(X,E):=\sum(-1)^k\dim H^k(X,E)$.
+		\item $\ch(E)$ is the \textbf{\textit{Chern character}}, that is, for $E=\Lc$,
+		\[\ch(\Lc):=\exp(c_1(\Lc))\]
+		for
+		\[c_1(\Lc)=H=\underbrace{1}_{\in H^0}+\underbrace{H}_{\in H^2}+\underbrace{\frac{H^2}{2}}_{\in H^4}+\ldots\]
+		so in general $\frac{H^k}{k!}\in H^{2k}(X,\Q)$ and
+		\begin{align*}
+			\ch(E\oplus F)&=\ch(E)+\ch(F)\\
+			\ch(E\otimes F)&=\ch(E)\smile\ch(F)
+		\end{align*}
+		so there's a map
+		\[\ch:\VectBund(X)\to K^{\top}(X)\to H^{2\bullet}(X,\Q)\]
+		\item For $\Td_X$ define the \textbf{\textit{Todd function}}
+		\[\td(x):=\frac{x}{1-e^x}=1+\frac{x}{2}+\frac{x}{12}+\ldots\]
+		so its coefficients are Bernoulli numbers.
+		
+		Then for $\Lc\in\Pic(X)$ and $H=c_1(\Lc)$,
+		\[\Td(\Lc):=\td(c_1(\Lc))=\td(H).\]
+		And then
+		\[\Td(E\oplus F)=\Td(E)\smile\Td(F)\]
+		\begin{claim}
+			There exists a unique map $\VectBund(X)\to H^{\bullet}(X,\Q)$ such that for the map
+			\[Y\overset{f}{\to}E/X\]
+			we have
+			\[\Td(f^*z)=f^*\Td(E).\]
+			Let us say that general characterstic classes (Chern classes)
+			\begin{itemize}[label=$\circ$]
+				\item $c(E)=\sum_{k=0}^\infty c_k(E)$
+				\item $c_k(E)\in H^{2k}(X,\Z)$
+				\item $c_0(E)=1$.
+				\item $c(E\oplus F)=c(E)\smile c(F)$.
+				\item $c(f^*E)=f^*c(E)$
+			\end{itemize}
+			and
+			\begin{itemize}[label=$\circ$]
+				\item $c(\Lc)=1+c_1(\Lc)$ as defined before.
+			\end{itemize}
+			Finally,
+			\[\Td_X:=\Td(Tx)\]
+			so
+			\[\Td_X=1+\frac{c_1}{2}+\frac{c_1^2+c_2}{12}+\frac{c_1c_?}{24}+\ldots\]
+		\end{claim}
+	\end{itemize}
+\end{thm}
+\subsection{20 may}
+There is a bilinear pairing
+\[H_1(T,\Z)\times H_1(T,\Z)\to\Z\]
+defined by intersection number.
+
+\begin{thm}[Hodge Index (special case)]
+	Suppose $\pi:X\to Y$ is a birrational map between a smooth projective surface $X$ and a projective surface $Y$. Then the signature of the intersection pairing betwen exceptional classes is negative definite.
+\end{thm}
+\begin{quotation}
+	So we proved the Hodge index theorem for complex Khäler surfaces.
+	
+	All of this is end of third chapter in \cite{huybrechts}.
+\end{quotation}
+\subsection{22 may}
+Recall
+\begin{thm}[Hirzebruch-Riemann-Roch (HRR)]
+	$E$ vector bundle (or, more generally, $\Fc\in\Coh(X)$), $X$ compact complex manifold (eg. projective).
+	\[\chi(X,E)=\int_{[X]}\ch(E)\smile \Td_X\]
+\end{thm}|
+After long and hard computation, we have concluded that for a surface,
+\begin{align*}
+	\chi(X,\Lc)&=\Lc_X(1+c_1(\Lc)+\frac{1}{2}c_1^2(\Lc))\cdot\left(1+\frac{1}{2}c_1(X)+\frac{1}{12}(c_1^2(X)+c_2(X)\right)\\
+	&=\int_X\frac{1}{12}(c_1^2(X)+c_2(X)+c_1(\Lc)\cdot\frac{1}{2}c_1(X)+\frac{1}{2}c_1^2(\Lc)
+\end{align*}
+We have derived Nöther formula:
+\[\chi(X,\Oc_X)=\int_{[X]}\frac{c_1^2+c_2}{12}\]
+Also there is the fact that
+\[12\chi(X,\Oc_X)=K_X^2+e(X)\]
+where $K$ is the \textbf{\textit{canonical degree}} and $e$ is the \textbf{\textit{Euler number}}.
+
+Then we observed that $\chi(X,\Oc(D))$ is a quadratic form. Recall that
+\begin{defn}
+	If $A,B\in\Ab$, $f:A\to B$ is \textbf{\textit{quadratic}} if
+	\[B(x,y)=f(x+y)-f(x)-f(y)-f(0)\]
+	is bilinear.
+\end{defn}
+Define
+\begin{align*}
+	B(D_1,D_2)=&\chi(X,\Oc(D_1+D_2)-\chi(X,D_2)+\chi(X,\Oc_X))\\
+	&=\frac{1}{2}(D_1^2+2D_1D_2+D_2^2)-D_1^2-D_2^2\\
+	&D_1D_2
+\end{align*}
+It's also written in the board that
+\[D_1D_2:=\chi(D_1+D_2)-\chi(D_1)-\chi(D_2)+\chi(\Oc)\]
+\begin{claim}
+	This function is symmetric and bilinear.
+\end{claim}
+\begin{proof}
+	If $D_2$ is effective, $c\in (D_2)$. Consider
+	\[\begin{tikzcd}
+		0\arrow[r]&\Oc(-D_2)\arrow[r]&\Oc_X\arrow[r]&\Oc_C\arrow[r]&0
+	\end{tikzcd}\]
+	twist by $\Oc(D_1)$.
+	\[\begin{tikzcd}
+		0\arrow[r]&\Oc(-D_2D_2)\arrow[r]&\Oc(-D_1)\arrow[r]&\Oc_c(-D_1)\arrow[r]&0
+	\end{tikzcd}\]
+	So
+	\[\chi(-D_1)=\chi(-D_2-D_1)+\chi(\Oc_c(-D_1))=\chi(C_1,\Oc(-D_1).\]
+\end{proof}
+Now we prove the Hodge index theorem
+\begin{thm}
+	Let $X$ be a projective surface. Let $H$ be very ample. Choose $0\neq D\in H^\perp$.
+	\[D\cdot H=0\qquad\qquad \Pic(X)=ce(X)=H\oplus H^\perp.\]
+	So we have an embedding $X\overset{|X|}{\hookrightarrow}\P^N$ and it turns out that
+	\[H^2=\deg(X)>0.\]
+	We will show that
+	\[D^2<0.\]
+\end{thm}
+\begin{proof}
+	\begin{claim}
+		$D^2>0\implies DH\neq0\implies$ our theorem.
+	\end{claim}
+	\begin{proof}
+		\[\chi(X,nD)\sim \frac{n^2D^2}{2}\quad\text{ for }n\gg 0\]
+		and also
+		\[\chi(X,nD)=h^0(nD)h^1(nD)+h^2(K-nD)=h^2(nD)\overset{n\to\infty}{\longrightarrow}\infty.\]
+		Either
+		\begin{enumerate}
+			\item $h^0(nD)\to\infty$ as $n\to\infty$. This implies $DH>0$.
+			\item $h^(K-nD)\to\infty$ as $n\to\infty$. This is implies $DH<0$.
+			\begin{proof}[Proof of 1.]
+				$nD$ is effective and $H$ is very ample, so $hDH>0\implies DH>0$.
+			\end{proof}
+			\begin{proof}[Proof of 2.]
+				content...
+			\end{proof}
+		\end{enumerate}
+	\end{proof}
+\end{proof}
+\subsection{blow-ups}
+(Look in \cite{hartshorne}) Consider $Z\overset{i}{\hookrightarrow}X$ for $Z,X$ complex manifolds (for simplicity, more generally take analytic subspaces). Now consider
+\[\begin{tikzcd}
+	0\arrow[r]&\If_Z\arrow[r,hook]&\Oc_X\arrow[r]&\Oc_Z\arrow[r]&0
+\end{tikzcd}\]
+where $\If_Z$ is the \textbf{\textit{ideal sheaf}}, whose sections are
+\[\Gamma(U,\If_Z)=\{f\in\Gamma(U,\Oc_X):f|_Z=0\},\]
+and $\Oc_Z$ is the \textbf{\textit{quotient sheaf}} $\Oc_X/\If_Z$.
+
+Notice $\supp(\Oc_Z)=Z$ where, in general the \textbf{\textit{support of a sheaf $\Fc$}} is $\supp\Fc=\{x\in X:\Fc\neq0\}$. \textbf{Important:} the support of a coherent sheaf is closed.
+
+\begin{defn}
+	\[\Bl_{\If}X=\Proj\bigoplus_{d\geq0}\If^d\]
+	where $\Proj$ is defined as follows.
+\end{defn}
+\begin{defn}[1]
+	Given a finitely generated sheaf of graded algebras $\Ac^\bullet=\bigoplus\Ac^d$ over $X$. This produces a triple
+	\begin{itemize}
+		\item A space $Y=\Proj_X\Ac$.
+		\item A morphism $Y\to X$.
+		\item Coherent sheaves $\Oc_Y(d)$ such that $\bigoplus_d\Oc_Y(d)$.
+	\end{itemize}
+	If $\Ac$ is generated over $\Oc_X$ in degree 1, then $\Oc_Y(d)$ are l.b. and $\Oc_Y(d)\aleph\Oc_Y(1)^{\otimes d}$ and $\Oc_Y(1)$ is relatively very ample.
+	
+	$f:Y\to X$ is \textbf{\textit{projective}} if there exists a closed embedding $j:Y\hookrightarrow Z$ and
+	\[\begin{tikzcd}
+		&X\times\P^N\arrow[dd,"\pi_1"]\\
+		Y\arrow[ur,hook,"j"]\arrow[dr,"f"]&\\
+		&X\arrow[r,hook]&Z\times \P^n\arrow[d]\\
+		&&Z
+	\end{tikzcd}\]
+\end{defn}
+\begin{defn}[2]
+	An "alternative" ("more general") definition would be
+	\[\begin{tikzcd}
+		Y\arrow[r,hook,"j"]&Z\arrow[r,"\cong"]&\P_X(E)\arrow[r,"\pi_2"]&X
+	\end{tikzcd}\]
+	for a closed embedding $j$.
+\end{defn}
+However,
+\begin{exercise}\leavevmode
+	\begin{enumerate}
+		\item Prove that definition 2 can be reduced to definition 1.
+		\item Prove that composition of proj is proj.
+	\end{enumerate}
+\end{exercise}
+\begin{remark}
+	$\Proj$ is a modification of $\Spec$. The only new feature of $\Proj$ is that $\Ac$ is now \textit{graded}. (So ideals go to graded ideals, modules go to grades modules, etc…)
+\end{remark}
+The system of generators are going to be homogeneous coordinates on the $\Proj$.
+\begin{example}[Twisted cubic]
+	The twisted cubic is not a complete intersection. $\PGL(\U)$ acts everywhere.
+\end{example}
+\subsection{universal property of blow ups}
+Let
+\[\begin{tikzcd}
+	Z\arrow[r,hook,"i"]&X&\Bl_ZX\arrow[l,"\pi"]
+\end{tikzcd}\]
+\begin{enumerate}
+	\item $\Bl_2X\overset{\pi}{\to}X$ is a projective morphism.
+	\item[1'.] $\pi$ is proper, ($1.\implies1'$)
+	'item $\pi:\pi^{-1}(U)\to U$ is an isomorphism.
+	\item $E=\pi^{-1}(Z)$, the \textbf{\textit{exact locus}}, is a Cartier divisor.
+\end{enumerate}
+\begin{prop}[Universal property of blow up]
+	Blow up is a universal morphism with $1+3$ or $1'+3$. It means that
+	\[\begin{tikzcd}
+		E\arrow[r,hook]\arrow[d]&\Bl_ZX\arrow[d]&Y\supset D\arrow[l,dashed,swap,"\exists"]\arrow[dl,"f"]\\
+		Z\arrow[r,hook]&X
+	\end{tikzcd}\]
+	So $f$ factors through the blow up.
+\end{prop}
+
+\subsection{lefschetz theorem about $(1,1)$-classes}
+\begin{thm}[Lefschetz theorem about $(1,1)$-classes]
+	If $X$ is a compact Kähler manifold, then any class in $H^{1,1}(X,\Z)$ is algebraic, that is, $c_1:\Pic X\to H^{1,1}(X,\Z)$ is surjective.
+\end{thm}
+\begin{proof}
+	Consider
+	\[\begin{tikzcd}
+		0\arrow[r]&\Z\arrow[r,"i"]&\Oc\arrow[r]&\Oc^*\arrow[r]&0
+	\end{tikzcd}\]
+	and then
+	\[\begin{tikzcd}
+		H^2(X,\Z)\arrow[r,"\eta"]\arrow[d]&H^2(X,\Oc)=H^{0,2}(X)\\
+		H^2(X,\Z)\otimes\C=H^2(X,\C)\arrow[r,equal]&H^{0,2}(X)\oplus H^{1,1}(X)\oplus H^{2,0}(X)\arrow[u,"\pi^{0,2}",swap]
+	\end{tikzcd}\]
+	We want to see that these two natural maps from $H^2(X,\Z)$ to $H^2(X,\Oc)$ are the same;
+	\begin{enumerate}
+		\item $\eta=H^2(Z\overset{i}{\hookrightarrow}\Oc)$ from long exact sequence of cohomology, and
+		\item Hodge theory projection from $H^2(X,\C)\to H^{0,2}(X)$.
+	\end{enumerate}
+\end{proof}
+\begin{exercise}
+	Torsion in $H^2(X,\Z)$ is dual to torsion in $H_1(X,\Z)$.
+\end{exercise}
+\begin{remark}
+	Next time we shall introduce \textbf{\textit{Hodge filtration $F^p\Ac^\bullet$}} and study various cohomologies associated to it
+\end{remark}
+\subsection{3 june}
+We start by noticing that there is a morphism of complexes $j$ given by
+\[\begin{tikzcd}
+	\Ac^{k}\arrow[r,"d"]\arrow[d,"\pi^{0,k}",swap]&\Ac^{k+1}\arrow[d,"\pi^{0,k+1}"]\\
+	\Ac^{0,k}\arrow[r,"\bar\partial"]&\Ac^{0,k+1}
+\end{tikzcd}\]
+(while the same is not true if we consider the complex $\Ac^{1,k}\to\Ac^{1,k+1}$ below.) This in turn induces cohomology maps $H^k(j):H^k(X,\C_X)\to H^k(X,\O_X)$ by diagram chasing. This holds for all complex manifolds. Then $\eta$ from last lecture is taken to be $H^2(j)$
+
+Now we'll try to use Kählerness. Let $X$ be compact Kähler and so that for all $[\alpha]\in H^2(X,\C)$ exists $\tilde\alpha$ harmonic, ie. $d\tilde\alpha$, such that $[\tilde\alpha]=[\alpha]$. Then we have that $\eta_j[\alpha]=\eta_j[\tilde\alpha]=[\tilde\alpha^{0,2}]$.
+
+By Hodge theory in compact Kähler, we have that $H_\partial^{2,0}(X)$ and $H^{2,0}_{\bar\partial}(X)$. Then we have that if $(\alpha,\beta)=0$, then for all $\beta\in\Ac^{2,0}\oplus\Ac^{0,2}$ closed, $\alpha\in\ker\pi^{0,2}\cap\ker\pi^{2,0}$, then $\alpha\in H^{1,1}_{\bar\partial}(X)$.
+
+This proves Lefschetz $(1,1)$.
+
+\begin{coro}
+	If $X$ is a smooth complex projective variety, then for any $\alpha\in H^{2k}(X,\C)$ there exists $Y_i\subset X$ of codimension $k$ and $c_i\in\C$ such that
+	\[\alpha=\sum c_i[Y_i].\]
+\end{coro}
+\begin{proof}
+	Let's prove this corollary for $k=1$, that is, for the case of divisors. Consider tensor product by $\Q$ to obtain
+	\[\Q\otimes\Div X\to H^2(X,\C)\]
+	We also have the inclusion-induced
+	\[H^{2k}(X,\Q)\to H^{2k}(X,\C)=\bigoplus_{p=q}H^{p,q}(X,\Q)\]
+\end{proof}
+\subsection{$K$-group}
+We have to categories: $\VectBund(X)$ and $\Coh(X)$. And two groups $K(X)$ and $G(X)$. Also there's $K^0(X)$ and $K_0(X)$. $K$-theory usually studied the case when we replace the $0$ with other numbers, but we won't do this, so we just use the notation without the $0$.
+
+So, vector bundles form a ring with tensor product so we have $K(X)\to \Ring$. Now notice that $K_0(X)$ is a module over $K^0(X)$.
+
+If $X$ is smooth and projective, by Serre, any coherent sheaf has a finite resolution by vector bundles. (If the variety is not smooth the resolution can become infinite.)
+
+Now: $\supp(\Fc)\subset$ a closed algebraic subvariety. Consider a filtration, \textbf{\textit{topological filtration}} $G(X)$ and then $F^kG(X)$, the subgroup generated by sheaves $\Fc$. ``Filtration defined in terms of codimension of support". This leads to something like $K^0_{\alg}\to K^0_{\top}(X)$, which in turn reminds us to the Chow map.
+
+What do we know about this topological filtration? Consider the Chow group $\CH^k(X)$ and $F^k(X)/F^{k+1}(X)$ and then there is the \textbf{\textit{associated graded}} $\Gr^k_FK(X)$. And then we may take direct sum over $k$ up to $\dim X$. And then how can we relate them?
+
+For $k=0$ we have $\Z[X]$. On the other side $\Gr^0_FK(X)\to \Z$ we may take a section (an arrow going the other way).
+
+For $k=1$ we have , and on the right side 
+\begin{align*}
+	\Gr^1_FK(X)&\to\Cl X\\
+	\sum F_i&\mapsto\sum_ik(F_i)\cdot D_i
+\end{align*}
+Is this map surjective? Yesbecause $\sum a_i\Oc_{D_i}\mapsto\sum a_iD_i$. Is it injective? Yes yes, in principle yes.
+\begin{claim}[Fulton, Intersection theory]
+	There are two maps,
+	\begin{align*}
+		\begin{aligned}
+			c:\Gr^k_FK(X)&\to\CH^k(X)\\
+			E&\mapsto c_k(E)
+		\end{aligned}\qquad\qquad
+		\begin{aligned}
+			\varphi:\CH^k(X)&\to\Gr_F^k(X)\\
+			Z&\mapsto[\Oc_Z]
+		\end{aligned}
+	\end{align*}
+	The first one is of course the $k$-th Chern class. So the claim is that they are \textit{almost} inverse of each other:
+	\begin{align*}
+		\varphi\circ c&=(-1)^k(k+1)!1_{\Gr^k_FK(X)}\\
+		c\circ\varphi&=(-1)^k(k-1)!1_{\CH^k(X)}
+	\end{align*}
+\end{claim}
+
+\subsection{weak lefshetz theorem, 5 june}
+There is a \textbf{\textit{box product}} $E\boxtimes F=p_X^*E\otimes p_Y^*F$ for $E/X$ and $F/Y$ and
+\[\begin{tikzcd}
+	&X\times Y\arrow[dl]\arrow[dr]\\
+	X&&Y
+\end{tikzcd}\]
+\begin{thm}[K\"unneth formula for cohomology of coherent sheaves]
+	Let them be line bundles
+	\[\Gamma(X\times Y,E\boxtimes F)=\Gamma(X,E)\otimes\Gamma(Y,F)\]
+\end{thm}
+\begin{thm}[semi-continuity]
+	The function $w\to h^0(Z_W,\Fc|_{Z_W})$ is upper semi continuous on $W$.
+	
+	These are closed:
+	\[W_k=\{w\in W:h(Z_W,\Fc_U)\geq k\}\]
+	
+	And also we can put an $r$ like this: $w\to h^r(Z_W,\Fc|_{Z_W})$ and this
+		\[W_k=\{w\in W:h^r(Z_W,\Fc_U)\geq k\}\]
+\end{thm}
+\begin{example}[Abel's map]
+	$S^k(X)\to\Pic^k(X)$.
+\end{example}
+\begin{thm}[Riemann]
+	$\Theta\subset\Pic^{g-1}X$ already "knows" all other strata.
+	\[\Mult_{\Lc}(\Theta)=h^0(X,\Lc)\]
+\end{thm}
+We also talked about
+\begin{defn}
+	An \textbf{\textit{incidence variety}} is when its elements are pairs of incident objects. So for example
+	\[Z(\ev)=\left\{\sum X_iY_i=0\right\}\subset\P(V)\times\P(V^*)\]
+	is an incidence variety. (It comes from considering the projectivizations of a vector space $V$ and its dual.)
+\end{defn}
+For $X\subset \P^N$ we may take a hyperplane $H\subset\P^N$. Notice that $H\cong\P^{N-1}$ and also it can be thought as an element of $\P^{N*}$. Define the \textbf{\textit{hyperplane section}} $X_H=X\cap H$.
+
+Let $H\in\P(V^*)$ be a hyperplane such that $X_H$ is smooth. Lefshetz hyperplane theorem relates topology of projective variety $X$ and $X_H$.
+
+\begin{thm}[Bertini]\leavevmode
+	\begin{enumerate}
+		\item There exists $H$ such that $X_H$ is smooth.
+		\item It is Zariski-open (and dense).
+	\end{enumerate}
+\end{thm}
+More generally, let $|H|$ be a linear system on a variety $X$ (with $\operatorname{char} k=0$). Let $\Lc\in\Pic X$. There's a map
+\begin{align*}
+	content...
+\end{align*}
+On the Telegram chat we have:
+\begin{thm}[Bertini]
+	Let $X\subset\P^n$ be a smooth variety. Then for a generic hyperplane $H$, the \textbf{\textit{hyperplane section}} $X_H=X\cap H$ is smooth.
+	
+	Equivalent formulation: projective dual of a smooth projective variety is no the whole $\P^{N*}$ but its proper subvariety.
+\end{thm}
+
+\begin{defn}\leavevmode
+	\begin{enumerate}
+		\item A \textbf{\textit{fixed divisor}} $D\subset X$ is an irreducible Weil dividor that is fixed if $\forall i$, $(s_i)\supset D$.
+	
+		\item The \textbf{\textit{fixed part of $|H|$}} is  $\bigcup$(fixed irreducible divisors).
+		
+		\item L.S. is \textbf{\textit{movable}} if $\Fix(|H|)=\varnothing$.
+		
+		\item \textbf{\textit{Base locus}} is the points where the point is not well-defined, ie. where it vanishes. So its \[B_S|H|=\{[V]:S_V=0\}=\{x\in X:s_i(x)=0\}\]
+		it is a closed subvariety.
+		
+		\item More generally, let $|H|$ be a movable linear system on a variety $X$. The \textbf{\textit{singular locus}} $\Sing X$ …
+	\end{enumerate}
+\end{defn}
+\begin{thm}[Also Bertini's]
+	Then for generic $H\in|H|$, $\Sing H\subset\Sing X\cap B_S|H|$.
+\end{thm}
+For most varieties their projective dual is a hypersurface.
+\begin{thm}[Lefshetz]
+	For example, you can consider the maps
+	\begin{align*}
+		H^k(X,\Z)&\to H^k(X_H,\Z)\\
+		H_k(X_H,\Z)&\to H_k(X,\Z)\\
+		\pi_k(X_H)&\to\pi_k(X)
+	\end{align*}
+	Then
+	\begin{enumerate}
+		\item All these maps are isomorphisms for $k<\dim_{\R}X_H$. {\color{magenta}(Homework: This for $H^k$ is derivable from Hard Lefshetz theorem)}
+		\item $H^k(i)$ is injective for $k=\dim X_H$, $H^k(i)$ is sujective and $\pi_k(i)$ is surjective.
+	\end{enumerate}
+\end{thm}
+
+
+
+\begin{coro}
+	$h^{p,q}(X_H)=h^{p,q}(X)$ for $p+q<\dim X-1$ and $h^{p,q}(X_H)\geq h^{p,q}(X)$ for $p+q=\dim_{\C}X-1$
+\end{coro}
+Do you know some statement that implies all of this? Some people prefer this form
+\begin{thm}[Another variation]
+	$(X\backslash X_H)$ is homotopy equivalent to CW complex $Z$ with cells of dimension less or equal to $\dim_{\C}X$, where $X\hookrightarrow\C$ is an affine variety.
+\end{thm}
+From standard algebraic topology that statement implies all of the others.
+\begin{proof}[Idea of proof]
+	We want to contract things. Construct some function on $X\backslash X_H$ whose critical locus is of dimension $\dim_{\C}X$. Now 
+	\[x\mapsto\dist(x,X_H)^2\]
+	is a smooth function and equals to zero on the complement of $X_H$. So consider points that are maximally far away.
+\end{proof}
+\begin{coro}
+	If you have some hypersurface its Hodge numbers will be one, one, one and then all of this part even, at least one, this is non-primitive class, of course, mirror symmetry will rotate this for Calabi-Yau, which is unusual, it's strange, mirror of hypersurfaces is not hypersurface, big number here corresponds to big Picard number. You need to do some blow ups. \textbf{\textit{Complete intersection of Calabi-Yau (CISY)}}. Bundle is ample if all these numbers are positive. Can I remove the projective space? Can I make it not very ample line bundle, ample line bundle, there are some extensions of this theorem. Clear?
+\end{coro}
+Hori and Tong: Physical understanding of these hypersurfaces. It's related to mirror symmetry but not mirror symmetry. Related to this, the geometry, Fukaya categories. They have the same branes. Mirror symmetry is A-branes here, B-branes there. What space transition is doing.
+
+\begin{exercise}
+	Prove that
+	\[H^k(X,\Z)&\to H^k(X_H,\Z)\]
+	using hard Lefschetz theorem.
+\end{exercise}
+
+\begin{proof}[Solution]
+	Based on \href{https://math.stackexchange.com/questions/712791/application-of-lefschetz-duality-to-prove-lefschetz-hyperplane-theorem}{StackExchange} and \href{https://en.wikipedia.org/wiki/Lefschetz_hyperplane_theorem}{wiki}. Also the proof is based on \cite{milnor}, coro. 7.3, it goes like this:
+
+	The isomorphism $H^{k}(X,\Z)\cong H^{k}(X_H,\Z)$ is equivalent to the vanishing of the relative cohomology groups $ H^{k}(X,X_H,\Z)$ vanshing by the long exact sequence of the pair.
+
+	To show this we need to adapt our hard LEfschetz to some relativ version. Milnor calls this \textit{\textbf{Lefschetz duality}}. The answer quoted above on StackEchange then refers to \cite{bredon}, chp VI thm 8.3, which states that
+\begin{equation*}
+	H^{k}(K,L;G)\cong H_{n-k}(M-L,M_-K;G)
+\end{equation*}
+for compact $L\subset K\subset M$, where the isomorphism is given by cap product in \v Cech cohomology.
+
+Smartly choose $M=X$, $K=X-X_H$ and $L=\varnothing$ to get that $M-K$ is $X-(X-X_H)=X_H$. Then,
+\begin{equation*}
+	H_{n-k}(X,X_H;\Z)\cong H^{k}(X-X_H;\Z)
+\end{equation*}
+Finally Milnor says that since $X-X_H$ is a nonsingular algebraic variety in $\C^n$, it will have homotopy type of a CW complex (this is thm 7.2 in \cite{milnor}, and actually the last version of Lefschetz that we stated), and thus its cohomology will vanish. Let's try to understand what's going on here.
+
+The statement we're looking for is \href{https://en.wikipedia.org/wiki/Andreotti–Frankel_theorem}{Andreotti-Frankel theorem}:
+
+\begin{thm}[Andreotti-Frankel]
+	If $V$ is a smooth, complex affine variety of complex dimension $n$ or, more generally, if $V$ is any Stein manofld of dimension $n$, then $V$ admits a Morse function with critical points of index at most $n$, and so $V$ is homotopy equivalent to a CW complex of real dimension at most $n$. 
+\end{thm}
+
+Consequently, if $V\subset \C^{r}$ is a complex manifold of dimension $n$ then $V$ has the homotopy thype of a CW complex of real dimension $\le n$. Therefore
+\begin{equation*}
+	H^{i}(V,\Z)=0,\qquad \text{for }i>0
+\end{equation*}
+and
+\begin{equation*}
+	H_{i}(V,\Z)=0,\qquad\text{for }i>0.
+\end{equation*}
+This theorem applies in particular to any smooth, complex affine variety of dimension $n$.
+
+So, this makes the homology groups above $n$ vanish, but wanted them to vanish for $k<n$… anyway, Milnor actually states Lefschetz duality in a more convenient way:
+\begin{equation*}
+	H^{2n-k}(X_H;\Z)\cong H_{k}(X,X_H;\Z)
+\end{equation*}
+And then it makes more sense.
+
+Is there another way of doing this other than by the CW-complex argument?
+\end{proof}
+
+
+\begin{question}[]
+	How to prove Lefschetz hyperplane theorem?
+\end{question}
+\begin{proof}[Answer]
+	The original proof of Lefschetz of his hyperplane section theorem used \textit{\textbf{Lefschetz pencils}}. This is a complex counter-part of a notion of a Morse function, and still popular today, e.g. Aroux, Donaldson, Katzarkov and co constructed and applied Lefschetz pencils for problems on symplectic geometry (they generalized notion of Lefschetz pencil to symplectic varieties).
+
+	In projective algebraic geometry, a pencil of hyperplane sections of a smooth projective variety $X$ in $P$ is known as a \href{https://en.wikipedia.org/wiki/Lefschetz_pencil}{Lefschetz pencil} if any of its elements is either smooth or has a unique singular point, which is a Morse point (also known as ordinary double point).
+
+	Bertini theorem in a form that we proved implies the existence of Lefschetz pencils: namely if $X\subset \P:=\P(V)$ is a smooth projective variety, and $X^*$ is its dual in $\P^*:=\P(V^*)$, then \textit{pencils of hyperplane sections are in bijection with projective lines $L$ in $\P^*$}. {\color{cyan}So, for example, sometimes lines are in correspondence with points:}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{duality}
+	\end{figure}	
+	A pencil is a Lefschetz pencil if the respective line $L$ intersects $X^*$ transversally. {\color{azure}This might be not immediately obvious, but follows after some analysis of local situation---exercise!} {\color{magenta}So I guess here a good question is what is $X^*$…} 
+
+	If $\codim X^*>1$ (then variety $X$ is called \textit{\textbf{defective}} then there are some lines that do not intersect $X^*$ at all--- this means all elements in such pencil are smooth. This is quite rare (as we discussed).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{pencil.png}
+		\caption*{Some lines in the pencil through $A$}
+	\end{figure}
+	If $\codim X^*=1$, then $X^*$ is a hypersurface in $\P(V^*)$, so it is given as zero locus of some reduced homogeneous polynomial $P_X$ of degree $d^*$, which is defined up to multiplication by an invertible constant. This poylnomial $P_X$ is known as \textit{\textbf{discriminant}} of $X$. Reason:
+
+\end{proof}
+
+%\clearpage
+%\addcontentsline{toc}{section}{References}
+%\printbibliography
 \end{document}
