@@ -1917,6 +1917,42 @@ Is there another way of doing this other than by the CW-complex argument?
 
 \end{proof}
 
+\subsection{June 10, some exercises}\label{ssec:June 10, some exercises}
+
+\begin{exercise}[Some part of weak Lefschetz]
+	Let $X\subset \C\mathbb{P}^N$ be a smooth projective variety of dimension $N$, and $Y$ a smooth hyperplane section. If $U=X\backslash Y$ is smooth, then
+	\[H_k(Y,\Z)\to H_k(X,\Z)\]
+	is an isomorphism for $k<n-1$ and surjective for $k=n-1$.
+\end{exercise}
+\begin{exercise}[Some other part of weak Lefschetz]
+	\[H^k(X,\C)\overset{i^*}{\to}H^k(Y,\C)\]
+	is an isomorphism for $k<n-1$ and injective for  $k=n-1$.
+\end{exercise}
+\begin{proof}[Solution]
+	Notice that for all $\alpha\in H^k(X,\C)$ we have that $i^*\alpha=0\iff\forall\beta\in H^{n-1-k}(Y,\C)$, $\int i^*\alpha\wedge\beta=0$ by Poincar\'e duality. In this case $\alpha=0$. So if  $\alpha\neq 0$ there must exist $\beta\in H^{2(n-1)-k}(Y,\C)$ such that $\int_{[Y]}i^*\alpha\wedge\beta\neq 0$.
+
+	Notice that by Poincar\'e duality + hard Lefschetz property, we have a perfect pairing in K\"ahler manifolds given by
+	\begin{align*}
+		 H^k\times H^k &\longrightarrow k \\
+		 (\alpha_1,\alpha_2) &\longmapsto ( (\alpha_1,\alpha_2)) = \int_{[X]}\alpha_1\wedge\alpha_2\wedge L^{n-k}_\omega
+	.\end{align*}
+	And also, for any functional $\lambda:H^k(X)\to k$ there exists $\alpha\in H^k(X)$ such that $\lambda(-)=\int_XL^{n-k}\wedge\alpha\wedge-$.
+
+	We also know that for any $\alpha\in H^k(X)\backslash 0$ there exists $\beta\in H^k(X)$ such that $\int_{[X]}L\wedge L^{n-k-1}\wedge\alpha\wedge\beta\neq 0$.
+	\begin{claim}
+		$\deg(\gamma\cap\omega\cap[X])=\int_X\omega\wedge\gamma=\int_Yi^*(\gamma)\overset{\text{proj. formula}}{=}\int_{i_*[Y]}=\langle i\in[Y],\gamma\rangle_X=\deg(\gamma\cap i_*[Y])$.	
+	\end{claim}
+
+Modulo this true-important-homework claim, we get that
+
+for any $\alpha\neq 0\in H^k(X)\backslash 0\;\exists \beta\in H^k(X)$ such that $\int_{[X]}L\wedge L_x^{n-k-1}\wedge\alpha\wedge\beta\neq 0$, and also this is equal to $\int_{[Y]}L_Y^{n-k-1}\wedge i^*\alpha\wedge i^*\beta$ so I guess there exists $\alpha'\in H^{2(n-1)-k}(Y)$ with $\alpha'=i^*\beta\wedge\omega^{n-k-1}$.
+
+For surjectivity, consider $i^*\alpha\in H^k(Y)$, which is a functional on $H^{2(n-1)-k}(Y)\ni\beta$
+\end{proof}
+
+
+
+
 %\clearpage
 %\addcontentsline{toc}{section}{References}
 %\printbibliography
