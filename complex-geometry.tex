@@ -1,193 +1,12 @@
-\documentclass{article}
-
-%\usepackage[style=authortitle-terse,backref]{biblatex}
-%\addbibresource{complex-geometry.bib}
-
-\setcounter{secnumdepth}{0}
-\usepackage{sectsty}
-\sectionfont{\fontsize{13}{20}\selectfont}
-
-\usepackage[left=4cm, right=4cm]{geometry}
-\usepackage{palatino,eulervm,dutchcal,xcolor}%fonts
-\usepackage{graphicx,subcaption,float}
-\usepackage{enumitem,parskip,multicol}
-\usepackage{amsthm,thmtools,xcolor,amssymb,amsmath}
-\usepackage{tikz,tikz-cd}
-\usetikzlibrary{%
-	matrix,%
-	calc,%
-	arrows,%
-	shapes,
-	decorations.markings,backgrounds,calc,intersections}
-\usepackage[bookmarks,bookmarksopen,bookmarksdepth=3]{hyperref}
-\hypersetup{%colores
-	colorlinks=true,
-	urlcolor=blue,
-	linkcolor=magenta,
-	citecolor=blue,
-	filecolor=blue,
-	urlbordercolor=white,
-	linkbordercolor=white,
-	citebordercolor=white,
-	filebordercolor=white}
-	\usepackage{cleveref}
-
-\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
-\definecolor{azure}{rgb}{0.0, 0.5, 1.0}
-\definecolor{green(ncs)}{rgb}{0.0, 0.62, 0.42}
-\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
-\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2}
-\definecolor{palatinateblue}{rgb}{0.15, 0.23, 0.89}
-\definecolor{trueblue}{rgb}{0.0, 0.45, 0.81}
-\definecolor{goldenyellow}{rgb}{1.0, 0.87, 0.0}
-\definecolor{fashionfuchsia}{rgb}{0.96, 0.0, 0.63}
-\definecolor{brightcerulean}{rgb}{0.11, 0.67, 0.84}
-\definecolor{jonquil}{rgb}{0.98, 0.85, 0.37}
-\definecolor{lavendermagenta}{rgb}{0.93, 0.51, 0.93}
-\definecolor{peru}{rgb}{0.8, 0.52, 0.25}
-\definecolor{persimmon}{rgb}{0.93, 0.35, 0.0}
-\definecolor{persianred}{rgb}{0.8, 0.2, 0.2}
-\definecolor{persianblue}{rgb}{0.11, 0.22, 0.73}
-\definecolor{persiangreen}{rgb}{0.0, 0.65, 0.58}
-\definecolor{persianyellow}{rgb}{0.9, 0.89, 0.0}
-
-\declaretheoremstyle[headfont=\color{trueblue}\normalfont\bfseries,]{colored1}
-\declaretheoremstyle[headfont=\color{forestgreen}\normalfont\bfseries,]{colored2}
-\declaretheoremstyle[headfont=\color{peru}\normalfont\bfseries,]{colored3}
-\declaretheoremstyle[headfont=\color{persiangreen}\normalfont\bfseries,]{colored4}
-\declaretheoremstyle[headfont=\color{brightcerulean}\normalfont\bfseries,]{colored5}
-\declaretheoremstyle[headfont=\color{lavendermagenta}\normalfont\bfseries,]{colored6}
-\declaretheoremstyle[headfont=\color{blue-violet}\normalfont\bfseries,]{colored7}
-\declaretheoremstyle[headfont=\color{green(ncs)}\normalfont\bfseries,]{colored8}
-\declaretheoremstyle[headfont=\color{peru}\normalfont\bfseries,]{colored9}
-\declaretheoremstyle[headfont=\color{persiangreen}\normalfont\bfseries,]{colored10}
-\declaretheoremstyle[headfont=\color{green(ncs)}\normalfont\bfseries,]{colored11}
-
-\declaretheorem[style=colored1,name=theorem]{thm}
-\declaretheorem[style=colored2,numberlike=thm,name=proposition]{prop}
-\declaretheorem[style=colored3,numberlike=thm,name=lemma]{lemma}
-\declaretheorem[style=colored4,numberlike=thm,name=corollary]{coro}
-\declaretheorem[style=colored5,numbered=no,name=example]{example}
-\declaretheorem[style=colored5,numbered=no,name=examples]{examples}
-\declaretheorem[style=colored7,numbered=no,name=exercise]{exercise}
-\declaretheorem[style=colored7,numbered=no,name=remark]{remark}
-\declaretheorem[style=colored8,numbered=no,name=claim]{claim}
-\declaretheorem[style=colored9,numbered=no,name=definition]{defn}
-\declaretheorem[style=colored10,numbered=no,name=question]{question}
-\declaretheorem[style=colored11,numbered=no,name=conjecture]{conjecture}
-
+\input{~/github/config/preamble.sty}
+\input{~/github/config/ops.sty}
 \makeatletter%Instead of bigwedge
 \newcommand{\extp}{\@ifnextchar^\@extp{\@extp^{\,}}}
 \def\@extp^#1{\mathop{\bigwedge\nolimits^{\!#1}}}
 \makeatother
 
-\newcommand{\A}{\mathbb{A}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\D}{\mathbb{D}}
-\renewcommand{\P}{\mathbb{P}}
-
-\newcommand{\Ac}{\mathcal{A}}
-\newcommand{\Bc}{\mathcal{B}}
-\newcommand{\Cc}{\mathcal{C}}
-\newcommand{\Dc}{\mathcal{D}}
-\newcommand{\Ec}{\mathcal{E}}
-\newcommand{\Fc}{\mathcal{F}}
-\newcommand{\Gc}{\mathcal{G}}
-\newcommand{\Hc}{\mathcal{H}}
-\newcommand{\Ic}{\mathcal{I}}
-\newcommand{\Jc}{\mathcal{J}}
-\newcommand{\Kc}{\mathcal{K}}
-\newcommand{\Lc}{\mathcal{L}}
-\newcommand{\Mc}{\mathcal{M}}
-\newcommand{\Nc}{\mathcal{N}}
-\newcommand{\Oc}{\mathcal{O}}
-\newcommand{\Pc}{\mathcal{P}}
-\newcommand{\Qc}{\mathcal{Q}}
-\newcommand{\Rc}{\mathcal{R}}
-\newcommand{\Sc}{\mathcal{S}}
-\newcommand{\Tc}{\mathcal{T}}
-\newcommand{\Uc}{\mathcal{U}}
-\newcommand{\Vc}{\mathcal{V}}
-\newcommand{\Wc}{\mathcal{W}}
-\newcommand{\Xc}{\mathcal{X}}
-\newcommand{\Yc}{\mathcal{Y}}
-\newcommand{\Zc}{\mathcal{Z}}
-
-\newcommand{\mf}{\mathfrak{m}}
-\newcommand{\If}{\mathfrak{I}}
-\newcommand{\Cinf}{C^\infty}
-
-\DeclareMathOperator{\img}{img}
-\DeclareMathOperator{\Arg}{Arg}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Id}{Id}
-\DeclareMathOperator{\Td}{Td}
-\DeclareMathOperator{\td}{td}
-\DeclareMathOperator{\Alt}{Alt}
-\DeclareMathOperator{\Spec}{Spec}
-\DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\Int}{Int}
-\DeclareMathOperator{\Mult}{Mult}
-\DeclareMathOperator{\Bl}{Bl}
-\DeclareMathOperator{\Cl}{Cl}
-\DeclareMathOperator{\Proj}{Proj}
-\DeclareMathOperator{\Ob}{Ob}
-\DeclareMathOperator{\Mor}{Mor}
-\DeclareMathOperator{\Top}{Top}
-\DeclareMathOperator{\dist}{dist}
-\DeclareMathOperator{\CGWH}{CGWH}
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Map}{Map}
-\DeclareMathOperator{\Tot}{Tot}
-\DeclareMathOperator{\Vect}{Vect}
-\DeclareMathOperator{\VectBund}{VectBund}
-\DeclareMathOperator{\Open}{Open}
-\DeclareMathOperator{\Ring}{Ring}
-\DeclareMathOperator{\Set}{Set}
-\DeclareMathOperator{\Sets}{Sets}
-\DeclareMathOperator{\Ab}{Ab}
-\DeclareMathOperator{\op}{op}
-\DeclareMathOperator{\Groups}{Groups}
-\DeclareMathOperator{\eq}{eq}
-\DeclareMathOperator{\CH}{CH}
-\DeclareMathOperator{\Gr}{Gr}
-\DeclareMathOperator{\Fun}{Fun}
-\DeclareMathOperator{\Coh}{Coh}
-\DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator{\Sing}{Sing}
-\DeclareMathOperator{\an}{an}
-\DeclareMathOperator{\alg}{alg}
-\DeclareMathOperator{\Pic}{Pic}
-\DeclareMathOperator{\GL}{GL}
-\DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\SO}{SO}
-\DeclareMathOperator{\U}{U}
-\DeclareMathOperator{\SU}{SU}
-\DeclareMathOperator{\Sp}{Sp}
-\DeclareMathOperator{\M}{M}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\PGL}{PGL}
-\DeclareMathOperator{\PSL}{PSL}
-\DeclareMathOperator{\Car}{Car}
-\DeclareMathOperator{\Prin}{Prin}
-\DeclareMathOperator{\Div}{Div}
-\DeclareMathOperator{\ord}{ord}
-\DeclareMathOperator{\kod}{kod}
-\DeclareMathOperator{\trdeg}{trdeg}
-\DeclareMathOperator{\ev}{ev}
-\DeclareMathOperator{\Mfld}{Mfld}
-\DeclareMathOperator{\ch}{ch}
-\DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\Ric}{Ric}
-\DeclareMathOperator{\Vol}{Vol}
-\DeclareMathOperator{\Area}{Area}
-\DeclareMathOperator{\Fix}{Fix}
-\renewcommand{\O}{\operatorname{O}}
+\usepackage[style=authortitle-terse,backend=bibtex]{biblatex}
+\addbibresource{complex-geometry.bib}
 
 \begin{document}
 {\Huge complex geometry}
@@ -504,7 +323,7 @@ Back to \cite{huybrechts}, a calculation shows that $d^2=0$, i.e.
 is a complex. {\color{magenta}Since $\Fc$ is a sheaf, one finds $\Gamma(M,\Fc)=\ker(d:C^0(\{U_i\},\Fc)\to C^1(\{U_i\},\Fc))$ (I would love to see why…)}.
 
 \begin{defn}
-	The \textbf{\textit{$i$-th \v Chech cohomology group}} with respect to the fixe open covering $M=\bigcup_iU_i$ is
+	The \textbf{\textit{$i$-th \v Chech cohomology group}} with respect to the fixed open covering $M=\bigcup_iU_i$ is
 	\[\check{H}^i(\{U_i\},\Fc)=\dfrac{\ker(d:C^i(\{U_i\},\Fc)\to C^{i+1}(\{U_i\},\Fc))}{\img(d:C^{i-1}(\{U_i\},\Fc)\to C^i(\{U_i\},\Fc))}\]
 	In this way, we have defined cohomology groups without using acyclic sheaves, but which still depend on the open covering $M=\bigcup U_i$. This can be remedied by passing to the limit. More precisely, if $M=\bigcup_i U_i$ is refined by an open covering $M=\bigcup_jV_j$, then there exists a natural map
 	\[\check{H}^i(\{U_i\},\Fc)\to\check{H}^i(\{V_j\},\Fc))\]
@@ -512,7 +331,7 @@ is a complex. {\color{magenta}Since $\Fc$ is a sheaf, one finds $\Gamma(M,\Fc)=\
 	\[\check{H}^i(M,\Fc):=\lim_\to \check{H}^i(\{U_i\},\Fc).\]
 \end{defn}
 Now let's quickly do the approach in \cite{donaldson}.
-Consider a topological space $X$ and an open cover $X=\bigcup_\alpha U_\alpha$. For simplicity, suppose $X$ is compact and the cover is finite. The \textbf{\textit{nerve}} if the cover is an abstract simplicial complex with one vertes (a 0-simplex) $\sigma_\alpha$ for every open set $U_\alpha$ and a $p$-simplex $\sigma_{\alpha_0,\ldots,\alpha_p}$ for each non-empty intersection $U_{\alpha_0}\cap\ldots\cap U_{\alpha_p}$. Now, given an abelian group $A$, we can form the simplicial cochain complex of this nerve.
+Consider a topological space $X$ and an open cover $X=\bigcup_\alpha U_\alpha$. For simplicity, suppose $X$ is compact and the cover is finite. The \textbf{\textit{nerve}} if the cover is an abstract simplicial complex with one vertex (a 0-simplex) $\sigma_\alpha$ for every open set $U_\alpha$ and a $p$-simplex $\sigma_{\alpha_0,\ldots,\alpha_p}$ for each non-empty intersection $U_{\alpha_0}\cap\ldots\cap U_{\alpha_p}$. Now, given an abelian group $A$, we can form the simplicial cochain complex of this nerve.
 
 For example, a 0-cochain is the assignment of an element $g_\alpha\in A$ to each $U_\alpha$. A 1-cochain assigns an element $g_{\alpha\beta}\in A$. to each non-empty intersection $U_\alpha\cap U_\beta$ and a 2-cochain assigns an element $g_{\alpha\beta\gamma}$ to each non-empty triple intersection $U_\alpha\cap U_\beta\cap U\gamma$. {\color{cyan}(Now this looks much more like \cref{remark:chain-complexes})} We have cochain groups $C^p$ for $p\geq 0$. There is a standar coboundary map $\delta:C^p\to C^{p+1}$. For example, a 1-cochain $\underline{g}=(a_\alpha)$ has $\delta\underline{g}=\underbrace{h}$ where
 \[\underline{h}_{\alpha\beta}=g_\alpha-g_\beta\]
@@ -529,7 +348,7 @@ Thus $H^*(X,A)$ is a topological invariant of $X$ and, at least for reasonable s
 
 Now, from this standpoint, the generalisation to ‘sheaf cohomology’ is very easy and natural. To keep things simple, for the moment suppose one has a class $S$ of functions on the space $X$ (these could be continuous functions or, if $X$ is a manifold, smooth functions or, if $X$ is a Riemann surface, holomorphic functions). The only property we require is that for each non-emptu open set $U\subset X$ there is a corresponding set $S(U)$ of functions on $U$ of the given class, and if $U\subset U$ we have a restriction map from $S(U)$ to $S(V)$.
 
-We generalise the \v Cech construction by allowing $g_{\alpha_0,\ldots,\alpha_p}$ to ba en element of $S(U_0\cap\ldots\cap U_p)$. The differential $\delta$ is defined by the same formula, but restricting functions on $p+1$ fold intersections to $p$-fold intersections.  Then we get cohomology groups $H^*(X;\Uc,S)$ and, taking limit over coverings, we arrive at an invariant $H^*(X,S)$.
+We generalise the \v Cech construction by allowing $g_{\alpha_0,\ldots,\alpha_p}$ to be an element of $S(U_0\cap\ldots\cap U_p)$. The differential $\delta$ is defined by the same formula, but restricting functions on $p+1$ fold intersections to $p$-fold intersections.  Then we get cohomology groups $H^*(X;\Uc,S)$ and, taking limit over coverings, we arrive at an invariant $H^*(X,S)$.
 
 \begin{quote}
 	For example, a 0-cochain $\underline{g}$ is given by a function $g_\alpha$ on $U_\alpha$ for each $\alpha$, and the cocycle condition $\delta\underline{g}=0$ asserts that $g_\alpha=g_\beta$ on any non empty intersection $U_\alpha\cap U_\beta$. This just means that the $g_\alpha$ are restrictions of a single function $g$ on $X$. Thus $H^0(X;\Uc,S)=S(X)$.
@@ -748,6 +567,10 @@ In contrast, locally finitely generated means there is a covering, that restrict
 \begin{thm}[Grauert's direct image theorem]
 	If $f:X\to Y$ if proper and $\Fc\in\Coh(X)$, then $f_*\Fc\in\Coh(X)$ and $\forall i \;R^i f_*\Fc\in\Coh Y$. (+ hom to relate )
 \end{thm}
+
+\begin{remark}[What is a coherent sheaf and what is going on]
+	(\href{https://en.wikipedia.org/wiki/Coherent_sheaf#Basic_constructions_of_coherent_sheaves}{wiki}) For exmple, given a vector bundle $E$ in this geometric sense, the corresponding sheaf $\mathcal{F}$ is defined by: over an open set $U$ of $X$, the $\mathcal{O}(U)$-module $\mathcal{F}(U)$ is the set of sections [on  $U$ ].
+\end{remark}
 
 \section{kodaira's embedding theorem}
 The proof of de Rham is as follows.
@@ -1062,11 +885,11 @@ And then that Grassman algebra has a natural decomposition because each copy of 
 	\begin{equation}\label{eq:hodge-decomposition1}
 		T_{X,x}\otimes\C=T^{1,0}_{X,x}\oplus T^{0,1}_{X,x}
 	\end{equation}
-	induced by the almost complex structure $J_x$ that every tangent space of a complex manifold naturally has induces a similar decomposition on the bundles of differential forms
+	induced by the almost complex structure $J_x$ that every tangent space of a complex manifold naturally induces a similar decomposition on the bundles of differential forms
 	\[\Omega_{X,\C}^k:=\Omega_{X,\R}^k\otimes\C=\bigoplus_{p+q=k}\Omega_X^{p,q},\]
 	where
 	\begin{equation}\label{eq:hodge-decomposition2}
-		\Omega^{p,q}_X\cong \extp^p\Omega^{1,0}_X\otimes\Omega^{0,1}_X
+		\Omega^{p,q}_X\cong \extp^p\Omega^{1,0}_X\otimes\extp^q\Omega^{0,1}_X
 	\end{equation}
 	and
 	\[\Omega_{X,\R}\otimes\C=\Omega^{1,0}_X\oplus\Omega^{0,1}_X\]
@@ -1359,10 +1182,16 @@ We have also defined \textbf{\textit{Hessian metrics}}, which are defined on coo
 	\end{itemize}
 \end{examples}
 \begin{exercise}
-	$\P^n$ is Kähler.
+	$\mathbb{P}^n$ is Kähler.
 \end{exercise}
 \subsection{homology class of a complex submanifold}
+
+\begin{remark}[2.3.11, Huybrechts]
+	Suppose $Y\subset X$ is a smooth hypersurface of a complex manifold $X$ of dimension $n$. In particular, $Y$ is a real codimension two submanifold of a compact manifold and thus defines an element $[Y]\in H^{2}(X,\mathbb{R})$, its \textit{\textbf{fundamental class}} as follows. By Poincar\'e duality, the linear map $\alpha\mapsto \int_{Y}\alpha)$ on $H^{2n-2}(X,\mathbb{R})$ defines an element on $H^{2}(X,\mathbb{R})$.
+\end{remark}
+
 Hodge conjecture asks which cohomology classes are submanifolds. Consider $X\hookrightarrow Y$ with $Y$ compact and $X$ closed submanifold (or subvariety).
+
 \begin{enumerate}
 	\item There is a class $[X]\in H^{2k}(Y,\R)$.
 	\item $[X]\in H^{2k}(Y,\Z)$.
@@ -1370,6 +1199,7 @@ Hodge conjecture asks which cohomology classes are submanifolds. Consider $X\hoo
 \end{enumerate}
 Items 2. and 3. imply $[X]\in H^{k,k}(Y,\Z)\subset H^{k,k}(Y,\C)$.
 \begin{conjecture}[Hodge]
+	
 	$\forall\alpha\in H^{k,k}(Y,\Q)\exists N$ and $X\hookrightarrow Y$ such that $N[X]=\alpha$.
 \end{conjecture}
 Which in fact implies \textbf{\textit{Grothendieck's standard conjectures}}.
@@ -1700,6 +1530,77 @@ This proves Lefschetz $(1,1)$.
 	We also have the inclusion-induced
 	\[H^{2k}(X,\Q)\to H^{2k}(X,\C)=\bigoplus_{p=q}H^{p,q}(X,\Q)\]
 \end{proof}
+
+\begin{remark}[Sergey, July 18 24']\leavevmode
+	{\color{lavendermagenta}
+		Lefschetz (1,1) theorem is the almost only known proven case of Hodge conjecture. And Daniel apparently misinterpreted it (and maybe mixed with more general conjecture, because his $k$ is arbitrary, not $k=1$).
+
+		I think there are 2 right statements, that being mixed make a wrong statement.
+		
+		One is purely topological and unrelated to complex manifolds---any cohomology class on a smooth compact manifold is represent by a submanifold.
+
+		Another is essentially the trivial part of Hodge conjecture. (Or non-trivial part of Lefschetz $(1,1)$.)
+
+		One correct statement is purely topological:
+\begin{enumerate}
+		\item With a smooth compact manifold $M$ of real dimension $k$ {\color{persimmon}($n$?)} one can associate its fundamental class $[M]$ in $H_n(M,\mathbb{Z})$, and moreover it is a generator (we won't need the latter fact).
+
+		{\color{persimmon}Recall here from Hatcher:
+		\begin{thm}[3.26]\leavevmode
+			Let $M$ be a closed connected $n$-manifold. Then
+			\begin{enumerate}
+				\item If $M$ is $\mathbb{R}$-orientable, the map $H_{n}(M;R)\to H_{n}(M,M-\{x\};R):=H_{n}(M|x;R)\cong R$ is an isomorphism for all $x\in M$.
+				\item If $M$ is not $\mathbb{R}$-orientable, the map $H_{n}(M;R)\to H_{n}(M|x;R)\cong R$ is injective with image $\{r\in R:2r=0\} $ for all $x\in M$.
+				\item $H_{i}(M;M)=0$ for $i>n$.
+			\end{enumerate}
+		\end{thm}
+	An element of $H_{n}(M;R)$ whose image in $H_{n}(M|x;R)$ is a generator for all $x$ is called a \textit{\textbf{fundamental class}} for $M$ with coefficients in $R$.}
+
+	\item Homology is covariant, so with $f : X \to Y$ there is $f_*$ or $H_k(f) : H_k(X) \to  H_k(Y)$
+	\item So if $M$ is a compact smooth manifold of dimension $k$ and $Y$ is any space and $f:M\to Y$ is a continuous map, then there is an associated $f_{*}:H_{k}(M,\mathbb{Z})\to H_{k}(Y,\mathbb{Z})$, and an element $[M]\in H_{k}(M,\mathbb{Z})$, so \textit{\textbf{taking}}  $H_{k}(f)[M]$ we obtain some homology class in $H_{k}(Y,Z)$ which we can denote $[M,f]$ or by abuse of notation as $[M]$. Here one has to remember how $M$ is embedded (or mapped) intro $Y$.
+
+	This gives a source of homology classes on $Y$. One may ask how special are the classes obtained this way.
+	\end{enumerate}
+	
+	One question is topological:
+
+	\begin{question}[Topological]
+		When $Y$ is a smooth compact manifold, what subgroup of $H_{k}(Y,Z)$ is generated by classes $[M,f]$? What elements of $H_{k}(Y,Z)$ are representable as $[M,f]$?
+	\end{question}
+
+	Another is dif and only if erent, and belongs to complex (algebraic) geometry:
+
+	\begin{question}[Complex-algebro-geometrical]
+		If $Y$ is also a complex manifold (e.g. a smooth projective complex variety), what subgroup is generated by classes $[X,f]$ where $X$ is complex and $f$ holomorphic?
+	\end{question}
+
+	First question (topological) has positive answer, that basically says everything is realizable.
+
+	Second question is essentially answered:
+	\begin{itemize}
+		\item For $H^{2}(Y,\mathbb{Z})$ and for $H_{2n-2}(Y,\mathbb{Z})$ by Lefschetz theorem on $(1,1)$-classes (and Poincar\'e duality) {\color{persimmon}(saying every class is algebraic)},
+		\item for $H_{2}(Y,\mathbb{Q})$ (with rational coefficients) it is answered by the exam problem (the one with delivery date due to July 8).
+	\item For $H_{2k}(Y,\mathbb{Q})$ where $1<k<n-1$ the conjectural answer is the Hodge conjecture.}
+	\end{itemize}
+\end{remark}
+
+
+
+\begin{exercise}[Exam problem due June 8]
+	Let $V$ be a smooth projective complex algebraic variety of dimension $n$. Prove that any homology class $C\in H_{2}(V,\mathbb{Q})$ the gollowing two conditions are equivalent:
+	\begin{enumerate}
+		\item \[\int_{C}\alpha=0\qquad \text{for all holomorphic 2-forms $\alpha$} \]
+		\item There are algebraic curves  $X_{1},\ldots,X_{n}$ on $V$ and rational numbers $m_{1},\ldots,m_{n}$ such that
+			\[C=m_{1}[X_{1}]+\ldots+m_{n}[X_{n}],\]
+			here $[X_{k}]$ are homology classes of curves $[X_{k}]$ in $H_{2}(V,\mathbb{Q})$.
+	\end{enumerate}
+	\textbf{Bonus:} for which dimensions ($n=1,2,3,4,\ldots$) can you improve your proofs to replace $Q$ by $\mathbb{Z}$?
+\end{exercise}
+
+\begin{proof}[Solution]
+	
+\end{proof}
+
 \subsection{$K$-group}
 We have to categories: $\VectBund(X)$ and $\Coh(X)$. And two groups $K(X)$ and $G(X)$. Also there's $K^0(X)$ and $K_0(X)$. $K$-theory usually studied the case when we replace the $0$ with other numbers, but we won't do this, so we just use the notation without the $0$.
 
@@ -1929,7 +1830,7 @@ Is there another way of doing this other than by the CW-complex argument?
 	is an isomorphism for $k<n-1$ and injective for  $k=n-1$.
 \end{exercise}
 \begin{proof}[Solution]
-	Notice that for all $\alpha\in H^k(X,\C)$ we have that $i^*\alpha=0\iff\forall\beta\in H^{n-1-k}(Y,\C)$, $\int i^*\alpha\wedge\beta=0$ by Poincar\'e duality. In this case $\alpha=0$. So if  $\alpha\neq 0$ there must exist $\beta\in H^{2(n-1)-k}(Y,\C)$ such that $\int_{[Y]}i^*\alpha\wedge\beta\neq 0$.
+	Notice that for all $\alpha\in H^k(X,\C)$ we have that $i^*\alpha=0\iff\forall\beta\in H^{n-1-k}(Y,\C)$, $\int i^*\alpha\wedge\beta=0$ by Poincar\'e duality. In this case $\alpha=0$. So if  $\alpha\neq 0$ there must exist $\beta\in H^{2(n-1)-k}(Y,\C)$ such that $\int_{[Y]}i^*\alpha\wedge\beta\neq 0$, which means that $i^*\alpha$ is not zero and $i^*$ is injective.
 
 	Notice that by Poincar\'e duality + hard Lefschetz property, we have a perfect pairing in K\"ahler manifolds given by
 	\begin{align*}
@@ -1950,10 +1851,206 @@ for any $\alpha\neq 0\in H^k(X)\backslash 0\;\exists \beta\in H^k(X)$ such that 
 For surjectivity, consider $i^*\alpha\in H^k(Y)$, which is a functional on $H^{2(n-1)-k}(Y)\ni\beta$
 \end{proof}
 
+\begin{remark}
+	While we struggled a bit with surjectivity, injectivity should be clear.
+\end{remark}
 
+\subsection{June 17: Chern connection}\label{sec:June 17: Chern connection}
 
+\begin{enumerate}
+	\item Define a \textit{\textbf{connection}} for a given vector bundle $E\to B$ to be a map
+		\[\mathcal{A}^0(E)\to\mathcal{A}^1(E)\]
+satisfying Leibniz identity that
+\[\nabla (f\cdot s)=df\otimes s+f\cdot\nabla s.\]
+\item Notice that the difference of two connections $D_1$ and $D_2$ when evaluated on the section $f\cdot s$ differ only by the second term, that is
+	 \[(D_1-D_2)(fs)=f(D_1-D_2)s\]
+	 which makes it a {\color{magenta}tensor?}
+ \item We may generalize this definition to $\mathcal{A}^k(E)\to \mathcal{A}^{k+1}(E)$.
+ \item Then we get
+	 \[\begin{tikzcd}[column sep=small]
+		 \mathcal{A}^{0}(E)\arrow[r,"D"]&\mathcal{A}^{1}(E)\arrow[r,"D"]&\mathcal{A}^2(E)\arrow[r,"D"]&\cdot
+	 \end{tikzcd}\]
+	 and we define the composition $D\circ D:\mathcal{A}^0(E)\to \mathcal{A}^2(E)$ to be the \textit{\textbf{curvature}}  of this connection, denoted y $F_D\in \mathcal{A}^2\operatorname{End}(E)$.
+ \item Now consider $\det(F_D+\lambda1_E)=\sum \lambda^k\omega_K^D$ and call $[\omega^D]:=c_k(E)$ the \textit{\textbf{Chern classes of $E$}}. The first one is $c_1(E)=[\operatorname{tr}(F^D)]$ and the \textit{\textbf{Chern character}} is $\operatorname{ch}(E)=[\operatorname{tr}(e^{FD})$.
+ \item Now go to Dolbeault complex. Similarly, we have a map
+	 \[\overline{\partial}:\mathcal{A}^0(E)\to\mathcal{A}^{0,1}(E)\]
+	 satisfying
+	 \[\overline{\partial}(f\cdot s)=\overline{\partial}f\otimes s+f(\overline{\partial}s)\]
+	 and extend it to
+	 \[\begin{tikzcd}[column sep=small]
+		 \mathcal{A}^{0}(E)\arrow[r]&\mathcal{A}^{0,1}(E))\arrow[r]&\mathcal{A}^{0,2}(E)\arrow[r]&\cdots
+	 \end{tikzcd}\]
+ \item So Leibniz for $D$ implies two Leibniz rules:
+	  \begin{enumerate}
+	 	\item \[D^0(fs)=\overline{\partial}f\otimes +fD^{0,s}s\]
+		\item \[D^{1,0}(fs)=\partial fs+D_{0,1}s\]
+	 \end{enumerate}
+ \item Fact:
+	 \begin{thm}[Some fact]
+	 	For any holomorphic vector bundle over a complex manifold there is a natural $(0,1)$-connection.
+	 \end{thm}
+	 \begin{defn}[Hermitian connection]
+	 	
+		 Connection $D$ is \textit{\textbf{hermitian}} when
+		\[h(s,s)=h(Ds,s)+h(s,Ds).\]
+	 \end{defn}
+	 Ahora s\'i,
+	 \begin{thm}[Chern]
+	 	For every hermitian vector bundle $(E,h)$ there exists a unique Hermitian connection $D$ such that
+		\[D^{0,1}=\overline{\partial}_E\]
+	 \end{thm}
+ \item Now take the curvature of the Chern connection. It is a real $(1,1)$-form and then we have the \textit{\textbf{Chern class}}:
+	 \[c_1(E):=[\operatorname{tr}(F^D)]\in H^{1,1}(X,\Z)\]Similarly, the
+	 \[c_k(E)\in H^{k,k}(X,\C)\cap H^{2k}(X,\Z)\]
+\end{enumerate}
+\subsubsection{Chern classes axiomatically}\label{ssec:Chern classes axiomatically}
+Fix $k=\Z,\R,\C,\ldots$.
+\begin{enumerate}
+	\item For any topological space $X$ in some nice class and any complex vector bundle $E/X$ we have
+		\[c_k(E)\in H^{2k}(X,k)\]
+\item \textbf{Functoriality (base change pullback).} We must ask that if $f:Y\to E/X$ 
+\[c_k(f^*E)=f^*c_k(E)\]
+where $f^*:H^{2k}(X,k)\to H^{2k}(Y,k)$ is the induced map.
+\item \textbf{Whittney formula}\[c(E\oplus F)=c(E)\cup c(F)\]
+	\[c_k(E\oplus F)\sum_{a+b=k} c_a(E)\smile c_b(F)\]
+\item \[c_k(E)=0\quad \text{for } k>\operatorname{rk}E\]
+\item \[c_1(\mathcal{O}_{\C\P^1}(1))=[P]\in H^{2}(\C\P^1,k).\]
+\end{enumerate}
+	
+\begin{thm}[Stiefel? Whitney?]
+	Such $c_k$ exist and for any $k=\Z,\R,\C,\ldots$ any two are equal.
+\end{thm}
+\subsubsection{kodaira vanishing}\label{sec:kodaira-vanishing}
+Now let's consider the commutator {\color{magenta}anticommutator?}
+\[F^D=\{D^{1,0},\overline{\partial}_E\}\]
+\begin{remark}
+	Recall that for a complex vector bundle $(\mathcal{L},h)$ with $X=\bigcup U_i$ and $\mathcal{L}|_{U_i}=\mathcal{O}|_{U_i}$. {\color{magenta}Then something related to the logarithm of a section that I really didn't understand…}
+\end{remark}
 
-%\clearpage
-%\addcontentsline{toc}{section}{References}
-%\printbibliography
+Now let's do some Hodge theory on a K\"ahler manifold $(X,g)$.We have the operator
+\[\overline{\partial}_E:\Ac^{0,k}(E)\to\mathcal{A}^{0,k+1}(E)\]
+and its adjoint
+\[-\overline{*}_E\partial\overline{*}_E=\overline{\partial}_E^*:\mathcal{A}^{0,k+1}(E)\to\mathcal{A}^{0,k}(E)\]
+and the K\"ahler identities...
+\begin{align*}
+	[L,d]=0=[L,d]\\
+	[L,D^{1,0}]=0\\
+	[\Lambda,\overline{\partial}]=i\partial^*\qquad\text{K\"ahler identity} \\
+	[\Lambda,\overline{\partial}_E]=i(D^{1,0})^*\qquad\text{Nakano identity}
+\end{align*}
+And then there is also
+\begin{thm}[Hodge theorem]
+	In every clas of $H^{p,q}(X,E)$ there is a unique harmonic representative $\alpha\in \mathcal{H}^{p,q}(X,E)$ such that
+	\[\overline{\partial}_E\alpha=0\qquad\overline{\partial}_E^*\alpha=0\]
+\end{thm}
+{\color{magenta}Then some computations using these equations…}
+
+\begin{thm}[Kodaira vanishing]
+	If $L$ is positive (there exists $h$ such that $\omega_{L,h}>0$ then
+	\[H^{p,q}(X,\mathcal{L})=0\qquad p+q>n=\dim X\]
+\end{thm}
+\begin{proof}
+	From Nakano identity go to some inequalities involving $(F^D\wedge\alpha,\alpha)=?$, back to Lefschetz… \textit{it is not (supposed to be) too complicated.}
+\end{proof}
+
+Ok now let's move onto something else. Let $Y\subset X$ be a hyperplane section and $(X,\mathcal{L})$ be such that $(X,\mathcal{L},h)$ is a positive line bundle. Consider two short exact sequences:
+\[\begin{tikzcd}
+	0\arrow[r]&\mathcal{O}_X(-Y)\arrow[r,hook]&\mathcal{O}_X\arrow[r]&\mathcal{O}_Y\arrow[r]&0
+\end{tikzcd}\]
+and
+\[\begin{tikzcd}
+	0\arrow[r]&\mathcal{O}_Y(-Y)\arrow[r]&\Omega_X|_Y\arrow[r]&\Omega_Y\arrow[r]&0
+\end{tikzcd}\]
+And then take $\Lambda^n$ to get
+\[\begin{tikzcd}
+	0\arrow[r]&\Omega^{n-1}_Y(-Y)\arrow[r]&\Omega^n_{X|_Y}\arrow[r]&\Omega^n_Y\arrow[r]&0
+\end{tikzcd}\]
+And then
+\[\begin{tikzcd}
+	0\arrow[r]&\Omega^n_X(-Y)\arrow[r]&\Omega^n_X\arrow[r]&\Omega^n_X\otimes\mathcal{O}_Y\arrow[r]&0
+\end{tikzcd}\]
+And then we get some long exact sequences:
+\[\begin{tikzcd}[column sep=tiny,row sep=tiny]
+	H^{q}(Y,\Omega^p_X|_Y)\arrow[r]&H^{q}(X,\Omega^p_X)\arrow[r]&H^{q}(X,\mathcal{O}_Y\otimes\Omega^p_X)\arrow[r]&H^{q+1}(X,\Omega^p_X(-Y))\arrow[d,equals]\arrow[r]&\cdots\\
+				       &&&H^{p,q+1}(X,\mathcal{O}(-Y))\arrow[d,equals]\\
+				       &&&H^{n+1-p,n-q}(X,\mathcal{O}(Y))
+\end{tikzcd}\]
+
+\subsection{kodaira embedding}\label{sec:June 19}
+\begin{coro}[3]
+	In a compact space, if you have any line bundle $(E,h)$, if $L>0$ is a positive bundle, then you can twist $E$ by a sufficiently big power of $L$ to make it positive. In symbols, $\exists N$ such that $\forall k\geq N$
+	\[E\otimes L^k>0.\]
+\end{coro}
+Let's write just for the pleasure of writing that for a compact complex manifold $X$,
+\begin{thm}[kodaira vanishing]
+	If $L>0$, $H^{p,q}(X,L)=0$ for $p+q>n$.
+\end{thm}
+and that
+\begin{thm}[serre-duality version 2.3]
+	$H^{p',q'}(X,L^\vee)=0$ for $p'+q'=0$.
+\end{thm}
+and guess what
+\begin{thm}[serre vanishing]
+	$L>0$, $\forall E \exists N$ such tat $H^{p,q}(X,E\otimes L^k)=0$ for all $q>0, \forall k\geq N$.
+\end{thm}
+And now,
+\begin{thm}[kodaira embedding]
+	For $X$ compact, $\operatorname{Pic}X\ni L$ is ample iff $L>0$.
+\end{thm}
+\begin{proof}
+	Let $L>0$ and lets find some $k$ such that
+	\[|L|^k:X\to\P^n\]
+	\begin{enumerate}
+		\item $\Gamma(X,L^{\otimes })$
+		\item L.S. $|L^k|$ is base point free, $\operatorname{bs}L^k=\0$.
+		\item $f:X\to \P^n=\P(\Gamma(S,L^k))$  is
+			\begin{enumerate}
+				\item injective
+				\item $\forall x\in X$  $df|_X:T_xX\to T_{fx}\P$ is injective.
+			\end{enumerate}
+			
+	\end{enumerate}
+	Now
+
+\end{proof}
+
+\paragraph{Step 1} $\forall x\in X$ there exists $k$ such that $\notin \operatorname{Bs}L^k$ for $k\geq n$ and $s \in \Gamma(X,L^k)$ with $s(x)\neq 0$.
+
+Remember that we always have
+
+\[\begin{tikzcd}
+	0\arrow[r]&\mathcal{I}_X\arrow[r,hook]&\mathcal{O}_X\arrow[r]&\mathcal{O}_X\arrow[r]&0
+\end{tikzcd}\]
+Multiplying by $\bigoplus L^k$ we get
+\[\begin{tikzcd}
+	0\arrow[r]&\mathcal{I}_X\otimes L^{\otimes k}\arrow[r]&L^{\otimes k}\arrow[r]&(L^{\otimes k})\otimes \mathcal{O}_X\arrow[r]&0
+\end{tikzcd}\]
+And then pass to the long one
+\[\begin{tikzcd}[column sep=small]
+	0\arrow[r]&\Gamma(X,\mathcal{I}_X\otimes L^{\otimes (k)})\arrow[r]&\Gamma(X,L^{\otimes k})\arrow[r]&\Gamma(X,\mathcal{O}_X\otimes L^{\otimes k})\arrow[r]&H^{1}(X,\mathcal{I}_X\otimes L^{\otimes k})\arrow[r]&\cdots
+\end{tikzcd}\]
+Then is the part of the blow-up:
+\[\begin{tikzcd}[column sep=small]
+	\P^{n-1}=\P(T_xX)=E\arrow[r,hook,"i_E"]\arrow[d,"\pi"]&\operatorname{Bl}_xX=\overline{X}\arrow[d,"G"]\\
+	\bullet\arrow[r]&X
+\end{tikzcd}\]
+{\color{blue}[Unsure of the ending…]}
+
+\section{June 24}\label{sec:June 24}
+E for \textbf{exceptional divisor}, Z for \textbf{zenter=center}, X for a manifold and $\widetilde{X}$ for the total space.
+\[\begin{tikzcd}
+	E\arrow[r,hook]\arrow[d,"\pi",swap]&\widetilde{X}\arrow[d,"\sigma"]\\
+	Z\arrow[r,hook]& X
+\end{tikzcd}\]
+
+\section{Chow}\label{sec:Chow}
+Start from a variety $X^{(d)}\subset \P^{n}$ produce an effective divisor  $C_{X}\subset \operatorname{Gr}(n-d-1,n+1) $. {\color{blue}Using universal subbundle?}
+
+\begin{quotation}
+	"Picard group is cyclic generated by $\mathcal{O}(n)"$
+\end{quotation}
+
+\section{Last lecture!}\label{sec:Last lecture!}
+What is an elliptic curve?
+
 \end{document}
