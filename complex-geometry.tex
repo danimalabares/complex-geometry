@@ -1,5 +1,6 @@
-\input{~/github/config/preamble.sty}
-\input{~/github/config/ops.sty}
+\input{/Users/daniel/github/config/preamble.sty}
+\input{/Users/daniel/github/config/ops.sty}
+
 \makeatletter%Instead of bigwedge
 \newcommand{\extp}{\@ifnextchar^\@extp{\@extp^{\,}}}
 \def\@extp^#1{\mathop{\bigwedge\nolimits^{\!#1}}}
@@ -56,14 +57,14 @@
 			&A\arrow[r,"f",swap]&B\arrow[ul, phantom, "\ulcorner", very near start]
 		\end{tikzcd}\]
 		\item In a category with a terminal object 1, the \textbf{\textit{cokernel}} of a morphism $f:A\to B$ is the pushout (arrows $h$ and $\phi$ apply if terminal object is zero)
-		\[\coker(f):=1\sqcup_AB\qquad\qquad\begin{tikzcd}
+		\[\operatorname{coker}(f):=1\sqcup_AB\qquad\qquad\begin{tikzcd}
 			A\arrow[r,"f"]\arrow[d]\arrow[dr, phantom, "\lrcorner", very near start]&B\arrow[d]\arrow[rdd,bend left,"h"]\\
-			1\arrow[r]&\coker(f)\arrow[dr,dashed,"\phi"]\\
+			1\arrow[r]&\operatorname{coker}(f)\arrow[dr,dashed,"\phi"]\\
 			&&C
 		\end{tikzcd}\]
-		In the case when the terminal object is in fact zero object, one can, more explicitly, characterize the object $\coker(f)$ with the following universal property:
+		In the case when the terminal object is in fact zero object, one can, more explicitly, characterize the object $\operatorname{coker}(f)$ with the following universal property:
 		\begin{quote}
-			for every object $C$ and every morphism $h:B\to C$ such that $h\circ f=0$ is the zero morphism, there is a unique morphism $\phi:\coker(f)\to C$ such that $h=\phi\circ i$.
+			for every object $C$ and every morphism $h:B\to C$ such that $h\circ f=0$ is the zero morphism, there is a unique morphism $\phi:\operatorname{coker}(f)\to C$ such that $h=\phi\circ i$.
 		\end{quote}
 		
 		\item A morphism $f:X\to Y$ is a \textbf{\textit{monomorphism}} if for every object $Z$ and every pair of morphisms $g_1,g_2:Z\to X$ then
@@ -130,9 +131,9 @@ This leads to the definition of a sheaf.
 \begin{defn}
 	Let $\Fc$ and $\Gc$ be two (pre-)sheaves. A \textbf{\textit{(pre-)sheaf homomorphism}} $\varphi:\Fc\to\Gc$ is given by group homomorphisms (linear maps, ring homomorphisms, etc.) $\varphi_U:\Fc(U)\to\Gc(U)$ for any open subset $U\subset M$ satisfying $r_{U,V}^{\Gc}\circ \varphi_V=\varphi_U\circ r_{U,V}^{\Fc}$ for any $U\subset V$.
 \end{defn}
-Once a homomorphism $\varphi:\Fc\to \Gc$ of (pre-)sheaves of abelian groups is given, one constructs the associated pre-sheaves $\ker(\varphi)$, $\img(\varphi)$ and $\coker(\varphi)$ which are defined in the obvious way, that is, $\coker(\varphi)(U)=\coker(\varphi_U:\Fc(U)\to\Gc(U))$.
+Once a homomorphism $\varphi:\Fc\to \Gc$ of (pre-)sheaves of abelian groups is given, one constructs the associated pre-sheaves $\ker(\varphi)$, $\img(\varphi)$ and $\operatorname{coker}(\varphi)$ which are defined in the obvious way, that is, $\operatorname{coker}(\varphi)(U)=\operatorname{coker}(\varphi_U:\Fc(U)\to\Gc(U))$.
 
-There is an important subtlety here. If $\varphi$ is a sheaf homomorphism then $\ker(\varphi)$ is a sheaf itself, but $\img(\varphi)$ and $\coker(\varphi)$, in general, are just pre-sheaves. In order to define the cokernel and the image of a sheaf homomorphism as honest sheaves, one needs to introduce the notion of a stalk.
+There is an important subtlety here. If $\varphi$ is a sheaf homomorphism then $\ker(\varphi)$ is a sheaf itself, but $\img(\varphi)$ and $\operatorname{coker}(\varphi)$, in general, are just pre-sheaves. In order to define the cokernel and the image of a sheaf homomorphism as honest sheaves, one needs to introduce the notion of a stalk.
 \begin{defn}
 	Let $\Fc$ be a (pre-)sheaf on $M$ and $x\in M$. Then the \textbf{\textit{stalk}} of $\Fc$ at $x$ is
 	\[\Fc_x:=\{(U,s):x\in U\subset M,s\in\Fc(U)\}/\sim\]
@@ -151,10 +152,10 @@ There is an important subtlety here. If $\varphi$ is a sheaf homomorphism then $
 \end{remark}
 
 \begin{defn}
-	Let $\varphi:\Fc\to\Gc$ be a homomorphism of sheaves. Then the \textbf{\textit{image sheaf $\img(\varphi)$}} is the sheaf associated with the image pre-sheaf $U\mapsto\img(\varphi_U)$. Analogously, one defines the \textbf{\textit{cokernel sheaf $\coker(\varphi)$}}.
+	Let $\varphi:\Fc\to\Gc$ be a homomorphism of sheaves. Then the \textbf{\textit{image sheaf $\img(\varphi)$}} is the sheaf associated with the image pre-sheaf $U\mapsto\img(\varphi_U)$. Analogously, one defines the \textbf{\textit{cokernel sheaf $\operatorname{coker}(\varphi)$}}.
 \end{defn}
 \begin{defn}
-	The sheaf homomorphism $\varphi$ is \textbf{\textit{injective}} if and only if $\ker(\varphi)$ is trivial. Similarly, one says that $\varphi$ is \textbf{\textit{surjective}} if its cokernel sheaf $\coker(\varphi)$ is trivial.
+	The sheaf homomorphism $\varphi$ is \textbf{\textit{injective}} if and only if $\ker(\varphi)$ is trivial. Similarly, one says that $\varphi$ is \textbf{\textit{surjective}} if its cokernel sheaf $\operatorname{coker}(\varphi)$ is trivial.
 \end{defn}
 	The essential difference between the two properties is that $\varphi$ is injective if and only if $\varphi_U$ is injective for any open set $U$. On the other hand, $\varphi$ might be surjective without $\varphi_U$ being surjective for all/any open subset. However, both properties can be detected by ther stalks. More precisely,
 \begin{quote}
@@ -195,17 +196,18 @@ In order to introduce sheaf cohomology, one has to make a choice. There is the t
 One first has to single out special sheaves with no cohomology in order to define cohomology for all other ones by resolving them.
 
 \begin{defn}
-	A \textbf{\textit{resolution}} of a sheaf $\Fc$ is a complex  \begin{tikzcd}
-		0\arrow[r]&\Fc^0\arrow[r]&\Fc^1\arrow[r]&\Fc^2\arrow[r]&0
-	\end{tikzcd} together with a homomorphism $\Fc\to\Fc^0$ such that
+	A \textbf{\textit{resolution}} of a sheaf $\Fc$ is a complex  
+	$\begin{tikzcd}
+		0\arrow[r]\mathcal{F}^0\arrow[r]&\mathcal{F}^1\arrow[r]&\Fc^2\arrow[r]&0
+	\end{tikzcd}$ together with a homomorphism $\mathcal{F}\to\mathcal{F}^0$ such that
 	\[\begin{tikzcd}
-		0\arrow[r]&\Fc\arrow[r]&\Fc^0\arrow[r]&\Fc^1\arrow[r]&\Fc^2\arrow[r]&\cdots
+		0\arrow[r]&\mathcal{F}\arrow[r]&\mathcal{F}^0\arrow[r]&\mathcal{F}^1\arrow[r]&\mathcal{F}^2\arrow[r]&\cdots
 	\end{tikzcd}\]
 	is an exact complex of sheaves.
 \end{defn}
 One possible choice for sheaves without cohomology is provided by flasque sheaves.
 \begin{defn}
-	A sheaf $\Fc$ is called \textbf{\textit{flasque}} if for any open subset $U\subset M$ the restriction map $r_{U,M}:\Fc(M)\to\Fc(U)$ is surjective.
+	A sheaf $\Fc$ is called \textbf{\textit{flasque}} if for any open subset $U\subset M$ the restriction map $r_{U,M}:\mathcal{F}(M)\to\mathcal{F}(U)$ is surjective.
 \end{defn}
 Why flasque sheaves are the right ones is explained by the following
 \begin{lemma}\label{lem:flasque}
@@ -330,6 +332,9 @@ is a complex. {\color{magenta}Since $\Fc$ is a sheaf, one finds $\Gamma(M,\Fc)=\
 	and one defines the \v Chech cohomology as a sheaf without specifying an open coveing as
 	\[\check{H}^i(M,\Fc):=\lim_\to \check{H}^i(\{U_i\},\Fc).\]
 \end{defn}
+
+\subsection{The approach in Donaldson}
+
 Now let's quickly do the approach in \cite{donaldson}.
 Consider a topological space $X$ and an open cover $X=\bigcup_\alpha U_\alpha$. For simplicity, suppose $X$ is compact and the cover is finite. The \textbf{\textit{nerve}} if the cover is an abstract simplicial complex with one vertex (a 0-simplex) $\sigma_\alpha$ for every open set $U_\alpha$ and a $p$-simplex $\sigma_{\alpha_0,\ldots,\alpha_p}$ for each non-empty intersection $U_{\alpha_0}\cap\ldots\cap U_{\alpha_p}$. Now, given an abelian group $A$, we can form the simplicial cochain complex of this nerve.
 
@@ -623,7 +628,7 @@ Any acyclic resolution
 	$h:\Cc\to\Fun(\Cc^{\op},\Sets)$ naturally.
 \end{lemma}
 \begin{defn}
-	$\img(f)=\ker(\coker(f))$
+	$\operatorname{img}(f)=\ker(\operatorname{coker}(f))$
 \end{defn}
 \begin{defn}
 	Additive functor.
